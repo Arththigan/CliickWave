@@ -192,20 +192,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Scroll Reveal IntersectionObserver
+    // Scroll Reveal IntersectionObserver (repeats every time element enters viewport)
     const revealElements = document.querySelectorAll(
         '.reveal-fade, .reveal-slide-up, .reveal-slide-left, .reveal-slide-right, .reveal-zoom-in'
     );
     
-    const revealObserver = new IntersectionObserver((entries, observer) => {
+    const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('revealed');
-                observer.unobserve(entry.target); // Reveal only once
+            } else {
+                // Reset when element leaves viewport so it animates again on re-entry
+                entry.target.classList.remove('revealed');
             }
         });
     }, {
-        threshold: 0.15, // Trigger when 15% of the element is visible
+        threshold: 0.15,
         rootMargin: '0px 0px -50px 0px'
     });
     

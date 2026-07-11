@@ -241,7 +241,7 @@ p {
 
 .logo {
     display: inline-block;
-    width: 140px;
+    width: 80px;
     height: 90px;
     position: relative;
     transition: var(--transition-normal);
@@ -252,20 +252,20 @@ p {
     top: 50%;
     left: 0;
     transform: translateY(-50%);
-    width: 140px;
-    height: 140px;
+    width: 80px;
+    height: 80px;
     object-fit: contain;
     transition: var(--transition-normal);
 }
 
 .header.scrolled .logo {
     height: 70px;
-    width: 110px;
+    width: 65px;
 }
 
 .header.scrolled .logo img {
-    width: 110px;
-    height: 110px;
+    width: 65px;
+    height: 65px;
 }
 
 .nav-list {
@@ -631,8 +631,39 @@ p {
 
 .service-card-desc {
     font-size: 0.95rem;
-    margin: 0;
+    margin: 0 0 20px 0;
     line-height: 1.6;
+}
+
+.service-sub-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border-top: 1px solid var(--clr-border);
+    padding-top: 18px;
+}
+
+.service-sub-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--clr-text-muted);
+    transition: var(--transition-fast);
+}
+
+.service-sub-list li i {
+    color: var(--clr-primary);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.service-card:hover .service-sub-list li {
+    color: var(--clr-text-main);
 }
 
 /* =========================================
