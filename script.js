@@ -165,12 +165,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (playVideoBtn && videoModal && closeModalBtn) {
         playVideoBtn.addEventListener('click', () => {
             videoModal.classList.add('open');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            document.body.style.overflow = 'hidden';
+            const modalVideo = document.getElementById('modal-video');
+            if (modalVideo) modalVideo.play();
         });
 
         const closeModal = () => {
             videoModal.classList.remove('open');
-            document.body.style.overflow = ''; // Restore scrolling
+            document.body.style.overflow = '';
+            const modalVideo = document.getElementById('modal-video');
+            if (modalVideo) { modalVideo.pause(); modalVideo.currentTime = 0; }
         };
 
         closeModalBtn.addEventListener('click', closeModal);
@@ -181,6 +185,27 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Portfolio Tab Switching
+    const tabBtns = document.querySelectorAll('.portfolio-tab-btn');
+    const tabContents = document.querySelectorAll('.portfolio-tab-content');
+
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const target = btn.getAttribute('data-tab');
+
+            tabBtns.forEach(b => b.classList.remove('active'));
+            tabContents.forEach(c => c.classList.remove('active'));
+
+            btn.classList.add('active');
+            document.getElementById('tab-' + target).classList.add('active');
+
+            // Re-process Instagram embeds when Posts tab is activated
+            if (target === 'posts' && window.instgrm) {
+                window.instgrm.Embeds.process();
+            }
+        });
+    });
 
     // Simple Form Submission Handler (simulation)
     const contactForm = document.getElementById('project-contact-form');
@@ -197,11 +222,13 @@ document.addEventListener('DOMContentLoaded', () => {
         '.reveal-fade, .reveal-slide-up, .reveal-slide-left, .reveal-slide-right, .reveal-zoom-in'
     );
     
-    const revealObserver = new IntersectionObserver((entries, observer) => {
+    const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('revealed');
-                observer.unobserve(entry.target); // Reveal only once
+            } else {
+                // Remove 'revealed' when element scrolls out of view so it re-animates on next scroll
+                entry.target.classList.remove('revealed');
             }
         });
     }, {
