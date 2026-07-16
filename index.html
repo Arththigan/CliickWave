@@ -14,6 +14,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Three.js for 3D animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -68,7 +70,8 @@
     <main>
         <!-- 1. Hero Section -->
         <section id="home" class="hero">
-            <div class="hero-bg-animation" id="hero-canvas"></div>
+            <canvas id="hero-3d-canvas" class="hero-3d-canvas"></canvas>
+            <div class="hero-bg-glow"></div>
             <div class="container hero-container">
                 <div class="hero-content">
                     <h1 class="hero-title">We Create Digital Experiences That <span class="text-gradient">Grow Brands</span></h1>
