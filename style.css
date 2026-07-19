@@ -1235,11 +1235,13 @@ p {
 }
 
 .trusted-title {
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: var(--clr-text-muted);
+    font-size: 0.75rem; /* Slightly smaller for premium uppercase balance */
+    font-weight: 800; /* Extra Bold for high impact */
+    letter-spacing: 0.15em; /* Premium modern tracking */
+    color: var(--clr-text-main);
+    opacity: 0.55; /* Blended with main theme color for professional contrast */
     margin-bottom: 40px;
+    text-transform: uppercase;
 }
 
 .logo-marquee {
