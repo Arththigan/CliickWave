@@ -1277,21 +1277,51 @@ p {
     animation: marquee 20s linear infinite;
 }
 
-.brand-logo-img {
-    height: 45px;
-    width: auto;
-    object-fit: contain;
-    margin-right: 70px;
-    display: inline-block;
+.brand-logo-token {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 85px;
+    height: 85px;
+    border-radius: 50%; /* Premium circular badge tokens */
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 
+        0 4px 16px rgba(72, 10, 121, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    margin-right: 45px;
+    padding: 10px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     vertical-align: middle;
-    opacity: 0.85; /* Soft vibrant color by default */
-    transition: opacity 0.3s var(--transition-fast), transform 0.3s var(--transition-fast);
+    cursor: pointer;
 }
 
-.brand-logo-img:hover {
-    opacity: 1; /* Fully bright on hover */
-    transform: scale(1.05); /* Modern subtle zoom on hover */
+.brand-logo-token:hover {
+    transform: translateY(-6px) scale(1.08); /* Sophisticated lift & scale */
+    border-color: rgba(106, 20, 176, 0.35); /* Subtle purple highlights */
+    box-shadow: 
+        0 12px 28px rgba(106, 20, 176, 0.14),
+        0 4px 10px rgba(72, 10, 121, 0.05);
 }
+
+.brand-logo-img {
+    max-width: 90%;
+    max-height: 90%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px; /* Smooth corners for screenshots */
+    opacity: 0.9;
+    mix-blend-mode: multiply; /* Extremely clever: blends screenshot white bg with glass */
+    transition: opacity 0.3s ease;
+}
+
+.brand-logo-token:hover .brand-logo-img {
+    opacity: 1;
+}
+
 
 
 
