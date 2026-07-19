@@ -853,19 +853,56 @@ p {
 /* =========================================
    4. Portfolio Section
    ========================================= */
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+/* Portfolio Infinite Card Scroll Wrapper */
+.portfolio-marquee {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    white-space: nowrap;
+    padding: 30px 0;
+}
+
+/* Glass fading cover effect on edges of portfolio */
+.portfolio-marquee::before,
+.portfolio-marquee::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 120px;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.portfolio-marquee::before {
+    left: 0;
+    background: linear-gradient(to right, var(--clr-bg-main) 0%, rgba(255,255,255,0) 100%);
+}
+
+.portfolio-marquee::after {
+    right: 0;
+    background: linear-gradient(to left, var(--clr-bg-main) 0%, rgba(255,255,255,0) 100%);
+}
+
+.portfolio-marquee-track {
+    display: inline-flex;
+    animation: portfolioScroll 32s linear infinite;
     gap: 30px;
-    perspective: 1000px;
+}
+
+/* Pause scroll when user hovers over any card so they can click/view it */
+.portfolio-marquee-track:hover {
+    animation-play-state: paused;
 }
 
 .portfolio-item {
+    display: inline-block;
+    flex-shrink: 0;
+    width: 330px; /* Maintains the exact grid card size shape */
     border-radius: var(--radius-md);
     overflow: hidden;
     position: relative;
     transform-style: preserve-3d;
-    /* Ultra smooth spring-like transition for all properties */
     transition: 
         transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
         box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
@@ -873,6 +910,7 @@ p {
     will-change: transform;
     border: 1px solid rgba(72, 10, 121, 0.08);
     background-color: var(--clr-white);
+
     /* Soft baseline shadow */
     box-shadow: 
         0 4px 20px rgba(72, 10, 121, 0.03),
@@ -970,6 +1008,10 @@ p {
     letter-spacing: -0.01em;
 }
 
+@keyframes portfolioScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - 15px)); } /* Adjust for gap offsets */
+}
 
 .portfolio-btn {
     position: absolute;
