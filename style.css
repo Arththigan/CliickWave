@@ -137,7 +137,7 @@ h4 {
 p {
     font-size: 1.0625rem; /* Optimum body copy text size */
     line-height: 1.65; /* Comfortable spacing for light backgrounds */
-    font-weight: 400;
+    font-weight: 500; /* Increased to Medium for extra readability over dynamic bg */
     color: var(--clr-text-muted);
     letter-spacing: -0.005em;
     -webkit-font-smoothing: antialiased;
