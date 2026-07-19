@@ -1,3 +1,33 @@
+/* =============================================================
+   WebGL Canvas – Stone / 3D Particle Effect Background
+   (Ported from phase-1-particle-effect branch)
+   ============================================================= */
+#webgl-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;            /* behind all UI elements */
+    pointer-events: none;   /* clicks pass through */
+    background-color: transparent;
+}
+
+/* =============================================================
+   Hero Background Video
+   ============================================================= */
+.hero-video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;            /* above webgl canvas, below hero content */
+    pointer-events: none;
+    opacity: 0.55;          /* subtle so particles show through */
+}
+
 /* =========================================
    CSS Variables & Core System
    ========================================= */

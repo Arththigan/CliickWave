@@ -16,9 +16,15 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <!-- Three.js for 3D animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- GSAP & ScrollTrigger for scroll-driven 3D animation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!-- WebGL 3D Particle / Stone Effect Canvas -->
+    <canvas id="webgl-canvas"></canvas>
 
     <!-- Header & Navigation -->
     <header class="header" id="header">
@@ -905,5 +911,7 @@
     <button class="back-to-top" id="back-to-top-btn" aria-label="Back to Top"><i class="ph ph-arrow-up"></i></button>
 
     <script src="script.js"></script>
+    <!-- 3D stone particle effect (from phase-1-particle-effect branch) -->
+    <script src="3d-animation.js"></script>
 </body>
 </html>
