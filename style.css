@@ -159,7 +159,8 @@ p {
 }
 
 .section-alt {
-    background-color: var(--clr-bg-alt);
+    background-color: transparent; /* Changed to transparent so the 3D stone shows through in these sections */
+    position: relative;
 }
 
 
