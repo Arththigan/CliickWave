@@ -1,4 +1,4 @@
-﻿// 3D Animated Scroll Website Engine - CliickWave
+// 3D Animated Scroll Website Engine - CliickWave
 // Built using Three.js, GSAP ScrollTrigger, and Lenis Smooth Scroll
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------
     // 3. Lighting System
     // -------------------------------------------------------------
-    const ambientLight = new THREE.AmbientLight(0x2d144d, 1.5);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2); // Clean, bright white ambient light
     scene.add(ambientLight);
 
     const directionalLight1 = new THREE.DirectionalLight(0x00ffff, 2.5); // Cyan light
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     directionalLight2.position.set(-5, -5, 2);
     scene.add(directionalLight2);
 
-    const pointLight = new THREE.PointLight(0x6A14B0, 4, 15); // Violet glow point
+    const pointLight = new THREE.PointLight(0x8A2BE2, 3, 15); // Light violet glow point
     pointLight.position.set(0, 0, 3);
     scene.add(pointLight);
 
@@ -141,12 +141,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const originalPositions = mainGeometry.attributes.position.clone();
 
     const mainMaterial = new THREE.MeshStandardMaterial({
-        color: 0x480A79,
-        roughness: 0.15,
-        metalness: 0.85,
+        color: 0xE8D8FD, // Beautiful soft pastel lavender crystal base
+        roughness: 0.1,  // Shiny, smooth surface reflections
+        metalness: 0.1,  // Transparent glass/dielectric feel rather than heavy metal
         flatShading: true,
         transparent: true,
-        opacity: 0.75,
+        opacity: 0.12,   // Highly translucent background element
         side: THREE.DoubleSide
     });
 
@@ -155,10 +155,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Glowing Wireframe Overlay
     const wireframeMaterial = new THREE.MeshBasicMaterial({
-        color: 0x00ffff,
+        color: 0x8A2BE2, // Purple glowing wireframe lines
         wireframe: true,
         transparent: true,
-        opacity: 0.18
+        opacity: 0.08   // Extremely clean, thin lines
     });
     const wireframeMesh = new THREE.Mesh(mainGeometry, wireframeMaterial);
     wireframeMesh.scale.setScalar(1.002); // Slightly larger to sit on top cleanly
@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const torusMaterial = new THREE.MeshBasicMaterial({
         color: 0xff00ff,
         transparent: true,
-        opacity: 0.2,
+        opacity: 0.12,
         wireframe: true
     });
     const auraRing = new THREE.Mesh(torusGeometry, torusMaterial);
@@ -226,65 +226,65 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Phase 1: Home to About ---
     scrollTl.to(meshGroup.position, { x: 1.6, y: -0.4, z: 0, ease: "power2.inOut" })
         .to(meshGroup.scale, { x: 0.8, y: 0.8, z: 0.8, ease: "power2.inOut" }, "<")
-        .to(mainColorProxy, { ...hexToRgb(0x6A14B0), ease: "power2.inOut", onUpdate: () => mainColorProxy.update() }, "<")
-        .to(wireColorProxy, { ...hexToRgb(0xff00ff), ease: "power2.inOut", onUpdate: () => wireColorProxy.update() }, "<")
+        .to(mainColorProxy, { ...hexToRgb(0xEBE0FA), ease: "power2.inOut", onUpdate: () => mainColorProxy.update() }, "<")
+        .to(wireColorProxy, { ...hexToRgb(0xF8E2FC), ease: "power2.inOut", onUpdate: () => wireColorProxy.update() }, "<")
         .to(particleSystem.rotation, { y: Math.PI * 0.25, z: Math.PI * 0.1, ease: "none" }, "<");
 
     // --- Phase 2: About to Services ---
     scrollTl.to(meshGroup.position, { x: -1.7, y: 0.2, z: -1, ease: "power2.inOut" })
         .to(meshGroup.scale, { x: 0.7, y: 0.7, z: 0.7, ease: "power2.inOut" }, "<")
-        .to(mainColorProxy, { ...hexToRgb(0x0a6279), ease: "power2.inOut", onUpdate: () => mainColorProxy.update() }, "<")
+        .to(mainColorProxy, { ...hexToRgb(0xE0F7FA), ease: "power2.inOut", onUpdate: () => mainColorProxy.update() }, "<")
         .to(wireColorProxy, { ...hexToRgb(0x00ffff), ease: "power2.inOut", onUpdate: () => wireColorProxy.update() }, "<")
         .to(particleSystem.rotation, { y: Math.PI * 0.6, z: -Math.PI * 0.1, ease: "none" }, "<");
 
     // --- Phase 3: Services to Why Choose Us ---
     scrollTl.to(meshGroup.position, { x: 1.8, y: 0.3, z: 0, ease: "power2.inOut" })
         .to(meshGroup.scale, { x: 0.85, y: 0.85, z: 0.85, ease: "power2.inOut" }, "<")
-        .to(mainColorProxy, { ...hexToRgb(0x61094f), ease: "power2.inOut", onUpdate: () => mainColorProxy.update() }, "<")
-        .to(wireColorProxy, { ...hexToRgb(0xff007f), ease: "power2.inOut", onUpdate: () => wireColorProxy.update() }, "<")
+        .to(mainColorProxy, { ...hexToRgb(0xFCE4EC), ease: "power2.inOut", onUpdate: () => mainColorProxy.update() }, "<")
+        .to(wireColorProxy, { ...hexToRgb(0xFFEBEE), ease: "power2.inOut", onUpdate: () => wireColorProxy.update() }, "<")
         .to(particleSystem.rotation, { y: Math.PI * 1.0, z: Math.PI * 0.25, ease: "none" }, "<");
 
     // --- Phase 4: Why Choose Us to Process Timeline ---
     scrollTl.to(meshGroup.position, { x: 0, y: -0.8, z: -2.5, ease: "power2.inOut" })
         .to(meshGroup.scale, { x: 1.6, y: 1.6, z: 1.6, ease: "power2.inOut" }, "<")
-        .to(mainColorProxy, { ...hexToRgb(0x210444), ease: "power2.inOut", onUpdate: () => mainColorProxy.update() }, "<")
-        .to(mainMaterial, { opacity: 0.45, ease: "power2.inOut" }, "<")
-        .to(wireColorProxy, { ...hexToRgb(0x6A14B0), ease: "power2.inOut", onUpdate: () => wireColorProxy.update() }, "<")
-        .to(wireframeMaterial, { opacity: 0.1, ease: "power2.inOut" }, "<")
+        .to(mainColorProxy, { ...hexToRgb(0xF3E5F5), ease: "power2.inOut", onUpdate: () => mainColorProxy.update() }, "<")
+        .to(mainMaterial, { opacity: 0.16, ease: "power2.inOut" }, "<")
+        .to(wireColorProxy, { ...hexToRgb(0xE8D8FD), ease: "power2.inOut", onUpdate: () => wireColorProxy.update() }, "<")
+        .to(wireframeMaterial, { opacity: 0.08, ease: "power2.inOut" }, "<")
         .to(particleSystem.rotation, { y: Math.PI * 1.4, ease: "none" }, "<");
 
     // --- Phase 5: Process to Portfolio & Videos ---
     scrollTl.to(meshGroup.position, { x: -1.6, y: -0.2, z: 0, ease: "power2.inOut" })
         .to(meshGroup.scale, { x: 0.9, y: 0.9, z: 0.9, ease: "power2.inOut" }, "<")
-        .to(mainColorProxy, { ...hexToRgb(0x11081C), ease: "power2.inOut", onUpdate: () => mainColorProxy.update() }, "<")
-        .to(mainMaterial, { opacity: 0.7, ease: "power2.inOut" }, "<")
-        .to(wireColorProxy, { ...hexToRgb(0x00ffff), ease: "power2.inOut", onUpdate: () => wireColorProxy.update() }, "<")
-        .to(wireframeMaterial, { opacity: 0.25, ease: "power2.inOut" }, "<")
+        .to(mainColorProxy, { ...hexToRgb(0xF5EEFC), ease: "power2.inOut", onUpdate: () => mainColorProxy.update() }, "<")
+        .to(mainMaterial, { opacity: 0.14, ease: "power2.inOut" }, "<")
+        .to(wireColorProxy, { ...hexToRgb(0x8A2BE2), ease: "power2.inOut", onUpdate: () => wireColorProxy.update() }, "<")
+        .to(wireframeMaterial, { opacity: 0.08, ease: "power2.inOut" }, "<")
         .to(particleSystem.rotation, { y: Math.PI * 1.8, z: 0, ease: "none" }, "<");
 
     // --- Phase 6: Portfolio to Testimonials & Pricing ---
     scrollTl.to(meshGroup.position, { x: 1.5, y: 0.4, z: -0.5, ease: "power2.inOut" })
         .to(meshGroup.scale, { x: 0.8, y: 0.8, z: 0.8, ease: "power2.inOut" }, "<")
-        .to(mainColorProxy, { ...hexToRgb(0x480A79), ease: "power2.inOut", onUpdate: () => mainColorProxy.update() }, "<")
-        .to(mainMaterial, { opacity: 0.75, ease: "power2.inOut" }, "<")
-        .to(wireColorProxy, { ...hexToRgb(0xff00ff), ease: "power2.inOut", onUpdate: () => wireColorProxy.update() }, "<")
-        .to(wireframeMaterial, { opacity: 0.18, ease: "power2.inOut" }, "<")
+        .to(mainColorProxy, { ...hexToRgb(0xEDE7F6), ease: "power2.inOut", onUpdate: () => mainColorProxy.update() }, "<")
+        .to(mainMaterial, { opacity: 0.12, ease: "power2.inOut" }, "<")
+        .to(wireColorProxy, { ...hexToRgb(0xF8E2FC), ease: "power2.inOut", onUpdate: () => wireColorProxy.update() }, "<")
+        .to(wireframeMaterial, { opacity: 0.08, ease: "power2.inOut" }, "<")
         .to(particleSystem.rotation, { y: Math.PI * 2.2, z: -Math.PI * 0.1, ease: "none" }, "<");
 
     // --- Phase 7: Pricing to Blog & FAQ ---
     scrollTl.to(meshGroup.position, { x: -1.5, y: -0.3, z: -1, ease: "power2.inOut" })
         .to(meshGroup.scale, { x: 0.75, y: 0.75, z: 0.75, ease: "power2.inOut" }, "<")
-        .to(mainColorProxy, { ...hexToRgb(0x005060), ease: "power2.inOut", onUpdate: () => mainColorProxy.update() }, "<")
+        .to(mainColorProxy, { ...hexToRgb(0xE0F2F1), ease: "power2.inOut", onUpdate: () => mainColorProxy.update() }, "<")
         .to(wireColorProxy, { ...hexToRgb(0x00ffff), ease: "power2.inOut", onUpdate: () => wireColorProxy.update() }, "<")
         .to(particleSystem.rotation, { y: Math.PI * 2.6, ease: "none" }, "<");
 
     // --- Phase 8: FAQ to Contact (Footer) ---
     scrollTl.to(meshGroup.position, { x: 0, y: 0.2, z: 0.5, ease: "power2.inOut" })
         .to(meshGroup.scale, { x: 1.25, y: 1.25, z: 1.25, ease: "power2.inOut" }, "<")
-        .to(mainColorProxy, { ...hexToRgb(0x580894), ease: "power2.inOut", onUpdate: () => mainColorProxy.update() }, "<")
-        .to(mainMaterial, { opacity: 0.85, ease: "power2.inOut" }, "<")
-        .to(wireColorProxy, { ...hexToRgb(0xff00ff), ease: "power2.inOut", onUpdate: () => wireColorProxy.update() }, "<")
-        .to(wireframeMaterial, { opacity: 0.3, ease: "power2.inOut" }, "<")
+        .to(mainColorProxy, { ...hexToRgb(0xF5F0FF), ease: "power2.inOut", onUpdate: () => mainColorProxy.update() }, "<")
+        .to(mainMaterial, { opacity: 0.15, ease: "power2.inOut" }, "<")
+        .to(wireColorProxy, { ...hexToRgb(0x8A2BE2), ease: "power2.inOut", onUpdate: () => wireColorProxy.update() }, "<")
+        .to(wireframeMaterial, { opacity: 0.1, ease: "power2.inOut" }, "<")
         .to(particleSystem.rotation, { y: Math.PI * 3.2, z: Math.PI * 0.2, ease: "none" }, "<");
 
 

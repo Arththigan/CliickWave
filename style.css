@@ -104,18 +104,6 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     line-height: 1.25;
     color: var(--clr-text-main);
-    /*
-     * Professional multi-layer white luminance system:
-     *  Layer 1 — 1px sharp white edge (crisp boundary against dark mesh)
-     *  Layer 2 — tight 6px glow (makes letters visually pop)
-     *  Layer 3 — 18px medium spread (warm halo around word)
-     *  Layer 4 — 40px wide diffusion (soft ambient lift off dark bg)
-     */
-    text-shadow:
-        0 0 1px  rgba(255, 255, 255, 1),
-        0 0 6px  rgba(255, 255, 255, 1),
-        0 0 18px rgba(255, 255, 255, 0.92),
-        0 0 40px rgba(255, 255, 255, 0.55);
 }
 
 h1 { font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: -1px; }
@@ -125,25 +113,7 @@ h4 { font-size: 1.25rem; }
 
 p {
     color: var(--clr-text-muted);
-    /*
-     * Paragraph luminance — softer than headings but fully legible:
-     *  Layer 1 — tight 4px white fill (no blurriness on small text)
-     *  Layer 2 — 14px medium halo
-     *  Layer 3 — 30px wide ambient
-     */
-    text-shadow:
-        0 0 4px  rgba(255, 255, 255, 1),
-        0 0 14px rgba(255, 255, 255, 0.9),
-        0 0 30px rgba(255, 255, 255, 0.65);
 }
-
-/* Span / strong / inline elements inherit readability */
-span, strong, em, li, label {
-    text-shadow:
-        0 0 4px  rgba(255, 255, 255, 0.95),
-        0 0 14px rgba(255, 255, 255, 0.7);
-}
-
 
 /* =========================================
    General Helper Classes
@@ -157,69 +127,12 @@ span, strong, em, li, label {
 
 .section {
     padding: 120px 0;
-    position: relative;
-    z-index: 1;
-    /* Transparent — stone effect visible everywhere across the page */
-    background-color: transparent;
 }
 
 .section-alt {
-    /* Subtle tinted overlay — still lets stone bleed through slightly */
-    background-color: rgba(249, 247, 251, 0.7);
-    position: relative;
-    z-index: 1;
+    background-color: var(--clr-bg-alt);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   Premium Frosted-Glass Content Container
-   Modern CSS Gradient Border technique (no inset shadow hack):
-     ┌─ How it works ──────────────────────────────────────────────────────────┐
-     │  background is set TWICE using multi-value shorthand:                   │
-     │   • Layer 1 (padding-box)  → solid white fill  → visible inside        │
-     │   • Layer 2 (border-box)   → gradient          → visible in border gap  │
-     │  border: 2px solid transparent  → creates the "gap" the gradient fills  │
-     └─────────────────────────────────────────────────────────────────────────┘
-   Result: border glows white → faint purple → white, exactly like iOS glass.
-   ───────────────────────────────────────────────────────────────────────────── */
-.section > .container,
-.section-alt > .container {
-    position: relative;
-    z-index: 2;
-
-    /* ── Glassmorphism fill ─────────────────────────────────────── */
-    backdrop-filter: blur(14px) saturate(200%) brightness(1.04);
-    -webkit-backdrop-filter: blur(14px) saturate(200%) brightness(1.04);
-    border-radius: 24px;
-
-    /* ── CSS Gradient Border (modern, no inset shadow) ────────────
-       padding-box layer  → the white frosted fill inside
-       border-box layer   → the shimmering gradient border
-       The gradient goes: bright white top-left → purple hint center
-                         → bright white bottom-right (iOS shimmer)      */
-    background:
-        linear-gradient(
-            rgba(255, 255, 255, 0.87),
-            rgba(255, 255, 255, 0.87)
-        ) padding-box,
-        linear-gradient(
-            135deg,
-            rgba(255, 255, 255, 0.95)  0%,
-            rgba(106, 20, 176, 0.18)  40%,
-            rgba(72,  10, 121, 0.12)  60%,
-            rgba(255, 255, 255, 0.90) 100%
-        ) border-box;
-
-    /* Transparent border creates the gap that the gradient fills */
-    border: 1.5px solid transparent;
-
-    /* Depth shadow — anchors glass card, adds subtle purple glow */
-    box-shadow:
-        0 8px 40px rgba(72, 10, 121, 0.08),
-        0 2px 16px rgba(72, 10, 121, 0.05);
-
-    padding-left: 48px;
-    padding-right: 48px;
-}
 
 
 .section-header {
