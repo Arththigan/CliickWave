@@ -1284,13 +1284,15 @@ p {
     margin-right: 70px;
     display: inline-block;
     vertical-align: middle;
-    filter: grayscale(100%) opacity(0.35); /* Elegant gray tint typical of high-end sites */
-    transition: filter 0.3s var(--transition-fast), opacity 0.3s var(--transition-fast);
+    opacity: 0.85; /* Soft vibrant color by default */
+    transition: opacity 0.3s var(--transition-fast), transform 0.3s var(--transition-fast);
 }
 
 .brand-logo-img:hover {
-    filter: grayscale(0%) opacity(0.85); /* Restores color on mouse hover */
+    opacity: 1; /* Fully bright on hover */
+    transform: scale(1.05); /* Modern subtle zoom on hover */
 }
+
 
 
 @keyframes marquee {
