@@ -104,6 +104,11 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     line-height: 1.25;
     color: var(--clr-text-main);
+    /* White glow behind text — keeps text readable when dark stone mesh passes behind */
+    text-shadow:
+        0 0 20px rgba(255, 255, 255, 0.9),
+        0 0 40px rgba(255, 255, 255, 0.6),
+        0 2px 8px rgba(255, 255, 255, 0.8);
 }
 
 h1 { font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: -1px; }
@@ -113,6 +118,10 @@ h4 { font-size: 1.25rem; }
 
 p {
     color: var(--clr-text-muted);
+    /* Subtle white halo so paragraph text stays legible over stone */
+    text-shadow:
+        0 0 12px rgba(255, 255, 255, 0.95),
+        0 0 24px rgba(255, 255, 255, 0.7);
 }
 
 /* =========================================
@@ -127,15 +136,35 @@ p {
 
 .section {
     padding: 120px 0;
-    position: relative;          /* Creates own stacking context */
-    z-index: 1;                  /* Always above webgl-canvas (z-index: -2) */
-    background-color: var(--clr-bg-main); /* Solid white — mesh can't bleed through */
+    position: relative;
+    z-index: 1;
+    /* Transparent — stone effect visible everywhere across the page */
+    background-color: transparent;
 }
 
 .section-alt {
-    background-color: var(--clr-bg-alt);
+    /* Subtle tinted overlay — still lets stone bleed through slightly */
+    background-color: rgba(249, 247, 251, 0.7);
     position: relative;
     z-index: 1;
+}
+
+/* ─── Frosted glass on all content containers ───────────────────────────────
+   The canvas stone mesh floats behind (z-index -2).
+   When the dark 3D object moves behind text, the frosted backdrop
+   auto-boosts contrast without hiding the stone effect entirely.
+   ─────────────────────────────────────────────────────────────────────────── */
+.section > .container,
+.section-alt > .container {
+    position: relative;
+    z-index: 2;
+    /* Very light frosted glass — stone shows through, text stays crisp */
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 .section-header {
