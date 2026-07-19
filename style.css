@@ -863,18 +863,36 @@ p {
 .portfolio-item {
     border-radius: var(--radius-md);
     overflow: hidden;
-    box-shadow: 0 4px 16px rgba(72, 10, 121, 0.12), 0 0 0 1.5px rgba(72, 10, 121, 0.10);
     position: relative;
     transform-style: preserve-3d;
-    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
+    /* Ultra smooth spring-like transition for all properties */
+    transition: 
+        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+        box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+        border-color 0.4s ease;
     will-change: transform;
-    border: 1.5px solid rgba(72, 10, 121, 0.12);
+    border: 1px solid rgba(72, 10, 121, 0.08);
+    background-color: var(--clr-white);
+    /* Soft baseline shadow */
+    box-shadow: 
+        0 4px 20px rgba(72, 10, 121, 0.03),
+        0 2px 8px rgba(72, 10, 121, 0.02);
 }
 
 .portfolio-item:hover {
-    transform: translateY(-8px) rotateX(4deg) rotateY(4deg);
-    box-shadow: 0 12px 36px rgba(72, 10, 121, 0.22), 0 0 0 2px rgba(72, 10, 121, 0.18);
-    border-color: rgba(72, 10, 121, 0.28);
+    /* Sleek upward float with a subtle, premium 3D tilt perspective */
+    transform: translateY(-10px) scale(1.02) rotateX(2deg);
+    /* 
+     * Holographic Glow Shadow:
+     * Combines deep purple shadow with bright cyan & magenta highlights
+     * to make the card feel like it's emitting colored light.
+     */
+    box-shadow: 
+        0 20px 40px rgba(72, 10, 121, 0.12), 
+        0 1px 20px rgba(0, 255, 255, 0.20), /* Cyan light beam */
+        0 1px 25px rgba(255, 0, 255, 0.15), /* Magenta light beam */
+        0 0 0 1px rgba(106, 20, 176, 0.2);  /* Active border ring */
+    border-color: rgba(106, 20, 176, 0.3);
 }
 
 .portfolio-img-wrapper {
@@ -884,6 +902,8 @@ p {
     overflow: hidden;
     line-height: 0;
     font-size: 0;
+    /* Vignette shade inside the wrapper */
+    background: radial-gradient(circle, transparent 60%, rgba(72, 10, 121, 0.03) 100%);
 }
 
 .portfolio-img-wrapper img {
@@ -893,7 +913,8 @@ p {
     object-position: center;
     display: block;
     vertical-align: bottom;
-    transition: var(--transition-slow);
+    /* Slow, cinematic image transition */
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .portfolio-overlay {
@@ -901,12 +922,22 @@ p {
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 30px;
-    background: linear-gradient(to top, rgba(17, 8, 28, 0.95) 0%, rgba(17, 8, 28, 0) 100%);
+    padding: 24px;
+    /* Elegant glassmorphic dark overlay instead of solid heavy black */
+    background: linear-gradient(
+        to top, 
+        rgba(15, 6, 26, 0.88) 0%, 
+        rgba(15, 6, 26, 0.65) 60%, 
+        rgba(15, 6, 26, 0) 100%
+    );
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     color: var(--clr-white);
     opacity: 0;
-    transform: translateY(20px);
-    transition: var(--transition-normal);
+    transform: translateY(15px);
+    transition: 
+        opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .portfolio-item:hover .portfolio-overlay {
@@ -915,23 +946,30 @@ p {
 }
 
 .portfolio-item:hover .portfolio-img-wrapper img {
-    transform: scale(1.08);
+    /* Gentle clean zoom without heavy distortions */
+    transform: scale(1.05);
 }
 
 .portfolio-cat {
-    font-size: 0.8rem;
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.12em;
+    color: rgba(255, 255, 255, 0.65);
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 .portfolio-item-title {
-    font-size: 1.35rem;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
     color: var(--clr-white);
     margin-bottom: 0;
+    letter-spacing: -0.01em;
 }
+
 
 .portfolio-btn {
     position: absolute;
