@@ -1277,19 +1277,21 @@ p {
     animation: marquee 20s linear infinite;
 }
 
-.brand-logo-text {
-    font-family: var(--font-heading);
-    font-size: 1.75rem;
-    font-weight: 800;
-    color: rgba(17, 8, 28, 0.15);
-    margin-right: 80px;
-    letter-spacing: 2px;
-    transition: var(--transition-fast);
+.brand-logo-img {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+    margin-right: 70px;
+    display: inline-block;
+    vertical-align: middle;
+    filter: grayscale(100%) opacity(0.35); /* Elegant gray tint typical of high-end sites */
+    transition: filter 0.3s var(--transition-fast), opacity 0.3s var(--transition-fast);
 }
 
-.brand-logo-text:hover {
-    color: var(--clr-primary);
+.brand-logo-img:hover {
+    filter: grayscale(0%) opacity(0.85); /* Restores color on mouse hover */
 }
+
 
 @keyframes marquee {
     0% { transform: translateX(0); }
