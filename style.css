@@ -104,11 +104,18 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     line-height: 1.25;
     color: var(--clr-text-main);
-    /* White glow behind text — keeps text readable when dark stone mesh passes behind */
+    /*
+     * Professional multi-layer white luminance system:
+     *  Layer 1 — 1px sharp white edge (crisp boundary against dark mesh)
+     *  Layer 2 — tight 6px glow (makes letters visually pop)
+     *  Layer 3 — 18px medium spread (warm halo around word)
+     *  Layer 4 — 40px wide diffusion (soft ambient lift off dark bg)
+     */
     text-shadow:
-        0 0 20px rgba(255, 255, 255, 0.9),
-        0 0 40px rgba(255, 255, 255, 0.6),
-        0 2px 8px rgba(255, 255, 255, 0.8);
+        0 0 1px  rgba(255, 255, 255, 1),
+        0 0 6px  rgba(255, 255, 255, 1),
+        0 0 18px rgba(255, 255, 255, 0.92),
+        0 0 40px rgba(255, 255, 255, 0.55);
 }
 
 h1 { font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: -1px; }
@@ -118,11 +125,25 @@ h4 { font-size: 1.25rem; }
 
 p {
     color: var(--clr-text-muted);
-    /* Subtle white halo so paragraph text stays legible over stone */
+    /*
+     * Paragraph luminance — softer than headings but fully legible:
+     *  Layer 1 — tight 4px white fill (no blurriness on small text)
+     *  Layer 2 — 14px medium halo
+     *  Layer 3 — 30px wide ambient
+     */
     text-shadow:
-        0 0 12px rgba(255, 255, 255, 0.95),
-        0 0 24px rgba(255, 255, 255, 0.7);
+        0 0 4px  rgba(255, 255, 255, 1),
+        0 0 14px rgba(255, 255, 255, 0.9),
+        0 0 30px rgba(255, 255, 255, 0.65);
 }
+
+/* Span / strong / inline elements inherit readability */
+span, strong, em, li, label {
+    text-shadow:
+        0 0 4px  rgba(255, 255, 255, 0.95),
+        0 0 14px rgba(255, 255, 255, 0.7);
+}
+
 
 /* =========================================
    General Helper Classes
@@ -149,23 +170,34 @@ p {
     z-index: 1;
 }
 
-/* ─── Frosted glass on all content containers ───────────────────────────────
-   The canvas stone mesh floats behind (z-index -2).
-   When the dark 3D object moves behind text, the frosted backdrop
-   auto-boosts contrast without hiding the stone effect entirely.
-   ─────────────────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────────────────────
+   Premium Frosted-Glass Content Container
+   Stone mesh floats behind (z: -2). Container sits above (z: 2).
+   Uses Apple-style glassmorphism:
+     - High-opacity white fill for strong text readability
+     - backdrop-filter blur + saturate for premium frosted look
+     - Hairline white border catches light (inner highlight)
+     - Depth shadow anchors the card visually
+   Stone still peeks through the glass — it doesn't disappear.
+   ───────────────────────────────────────────────────────────────────────────── */
 .section > .container,
 .section-alt > .container {
     position: relative;
     z-index: 2;
-    /* Very light frosted glass — stone shows through, text stays crisp */
-    background: rgba(255, 255, 255, 0.78);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    border-radius: 20px;
-    padding-left: 40px;
-    padding-right: 40px;
+    background: rgba(255, 255, 255, 0.86);
+    backdrop-filter: blur(14px) saturate(200%) brightness(1.04);
+    -webkit-backdrop-filter: blur(14px) saturate(200%) brightness(1.04);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    /* Inner white highlight line at top — premium glass highlight */
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        0 8px 40px rgba(72, 10, 121, 0.07),
+        0 2px 12px rgba(72, 10, 121, 0.04);
+    padding-left: 48px;
+    padding-right: 48px;
 }
+
 
 .section-header {
     max-width: 650px;
