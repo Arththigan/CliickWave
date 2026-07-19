@@ -65,14 +65,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------
     // 3. Lighting System
     // -------------------------------------------------------------
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2); // Clean, bright white ambient light
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.85); // Reduced slightly to allow reflections to show
     scene.add(ambientLight);
 
-    const directionalLight1 = new THREE.DirectionalLight(0x00ffff, 2.5); // Cyan light
+    const directionalLight1 = new THREE.DirectionalLight(0x00ffff, 3.2); // Brighter Cyan light for specular reflections
     directionalLight1.position.set(5, 5, 2);
     scene.add(directionalLight1);
 
-    const directionalLight2 = new THREE.DirectionalLight(0xff00ff, 2.5); // Magenta light
+    const directionalLight2 = new THREE.DirectionalLight(0xff00ff, 3.2); // Brighter Magenta light
     directionalLight2.position.set(-5, -5, 2);
     scene.add(directionalLight2);
 
@@ -143,10 +143,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainMaterial = new THREE.MeshStandardMaterial({
         color: 0xE8D8FD, // Beautiful soft pastel lavender crystal base
         roughness: 0.1,  // Shiny, smooth surface reflections
-        metalness: 0.1,  // Transparent glass/dielectric feel rather than heavy metal
+        metalness: 0.2,  // Low metalness for glass-like refractions
+        emissive: 0x6A14B0, // Deep purple emissive color for inner glow
+        emissiveIntensity: 0.16, // Soft glowing aura from inside the crystal faces
         flatShading: true,
         transparent: true,
-        opacity: 0.12,   // Highly translucent background element
+        opacity: 0.18,   // Base opacity increased slightly for better contrast
         side: THREE.DoubleSide
     });
 
@@ -155,10 +157,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Glowing Wireframe Overlay
     const wireframeMaterial = new THREE.MeshBasicMaterial({
-        color: 0x8A2BE2, // Purple glowing wireframe lines
+        color: 0x00ffff, // High-contrast glowing cyan wireframe lines
         wireframe: true,
         transparent: true,
-        opacity: 0.08   // Extremely clean, thin lines
+        opacity: 0.18   // Increased wireframe visibility to define the crystal geometry
     });
     const wireframeMesh = new THREE.Mesh(mainGeometry, wireframeMaterial);
     wireframeMesh.scale.setScalar(1.002); // Slightly larger to sit on top cleanly
@@ -169,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const torusMaterial = new THREE.MeshBasicMaterial({
         color: 0xff00ff,
         transparent: true,
-        opacity: 0.12,
+        opacity: 0.2,   // Restored slightly for definition
         wireframe: true
     });
     const auraRing = new THREE.Mesh(torusGeometry, torusMaterial);
@@ -248,27 +250,27 @@ document.addEventListener('DOMContentLoaded', () => {
     scrollTl.to(meshGroup.position, { x: 0, y: -0.8, z: -2.5, ease: "power2.inOut" })
         .to(meshGroup.scale, { x: 1.6, y: 1.6, z: 1.6, ease: "power2.inOut" }, "<")
         .to(mainColorProxy, { ...hexToRgb(0xF3E5F5), ease: "power2.inOut", onUpdate: () => mainColorProxy.update() }, "<")
-        .to(mainMaterial, { opacity: 0.16, ease: "power2.inOut" }, "<")
+        .to(mainMaterial, { opacity: 0.22, ease: "power2.inOut" }, "<")
         .to(wireColorProxy, { ...hexToRgb(0xE8D8FD), ease: "power2.inOut", onUpdate: () => wireColorProxy.update() }, "<")
-        .to(wireframeMaterial, { opacity: 0.08, ease: "power2.inOut" }, "<")
+        .to(wireframeMaterial, { opacity: 0.16, ease: "power2.inOut" }, "<")
         .to(particleSystem.rotation, { y: Math.PI * 1.4, ease: "none" }, "<");
 
     // --- Phase 5: Process to Portfolio & Videos ---
     scrollTl.to(meshGroup.position, { x: -1.6, y: -0.2, z: 0, ease: "power2.inOut" })
         .to(meshGroup.scale, { x: 0.9, y: 0.9, z: 0.9, ease: "power2.inOut" }, "<")
         .to(mainColorProxy, { ...hexToRgb(0xF5EEFC), ease: "power2.inOut", onUpdate: () => mainColorProxy.update() }, "<")
-        .to(mainMaterial, { opacity: 0.14, ease: "power2.inOut" }, "<")
+        .to(mainMaterial, { opacity: 0.20, ease: "power2.inOut" }, "<")
         .to(wireColorProxy, { ...hexToRgb(0x8A2BE2), ease: "power2.inOut", onUpdate: () => wireColorProxy.update() }, "<")
-        .to(wireframeMaterial, { opacity: 0.08, ease: "power2.inOut" }, "<")
+        .to(wireframeMaterial, { opacity: 0.14, ease: "power2.inOut" }, "<")
         .to(particleSystem.rotation, { y: Math.PI * 1.8, z: 0, ease: "none" }, "<");
 
     // --- Phase 6: Portfolio to Testimonials & Pricing ---
     scrollTl.to(meshGroup.position, { x: 1.5, y: 0.4, z: -0.5, ease: "power2.inOut" })
         .to(meshGroup.scale, { x: 0.8, y: 0.8, z: 0.8, ease: "power2.inOut" }, "<")
         .to(mainColorProxy, { ...hexToRgb(0xEDE7F6), ease: "power2.inOut", onUpdate: () => mainColorProxy.update() }, "<")
-        .to(mainMaterial, { opacity: 0.12, ease: "power2.inOut" }, "<")
+        .to(mainMaterial, { opacity: 0.18, ease: "power2.inOut" }, "<")
         .to(wireColorProxy, { ...hexToRgb(0xF8E2FC), ease: "power2.inOut", onUpdate: () => wireColorProxy.update() }, "<")
-        .to(wireframeMaterial, { opacity: 0.08, ease: "power2.inOut" }, "<")
+        .to(wireframeMaterial, { opacity: 0.12, ease: "power2.inOut" }, "<")
         .to(particleSystem.rotation, { y: Math.PI * 2.2, z: -Math.PI * 0.1, ease: "none" }, "<");
 
     // --- Phase 7: Pricing to Blog & FAQ ---
@@ -282,9 +284,9 @@ document.addEventListener('DOMContentLoaded', () => {
     scrollTl.to(meshGroup.position, { x: 0, y: 0.2, z: 0.5, ease: "power2.inOut" })
         .to(meshGroup.scale, { x: 1.25, y: 1.25, z: 1.25, ease: "power2.inOut" }, "<")
         .to(mainColorProxy, { ...hexToRgb(0xF5F0FF), ease: "power2.inOut", onUpdate: () => mainColorProxy.update() }, "<")
-        .to(mainMaterial, { opacity: 0.15, ease: "power2.inOut" }, "<")
+        .to(mainMaterial, { opacity: 0.22, ease: "power2.inOut" }, "<")
         .to(wireColorProxy, { ...hexToRgb(0x8A2BE2), ease: "power2.inOut", onUpdate: () => wireColorProxy.update() }, "<")
-        .to(wireframeMaterial, { opacity: 0.1, ease: "power2.inOut" }, "<")
+        .to(wireframeMaterial, { opacity: 0.16, ease: "power2.inOut" }, "<")
         .to(particleSystem.rotation, { y: Math.PI * 3.2, z: Math.PI * 0.2, ease: "none" }, "<");
 
 
