@@ -196,14 +196,63 @@ ul { list-style: none; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 1100px) { .pricing-grid { grid-template-columns: repeat(2, 1fr); } }
+
+@media (max-width: 900px) {
+    .pricing-hero { padding: 80px 24px 90px; }
+    .pricing-section { padding: 70px 24px; }
+    .compare-section { padding: 70px 24px; }
+    .cta-section { padding: 80px 24px; }
+    .hero-glow-1 { width: 400px; height: 400px; }
+    .hero-glow-2 { width: 350px; height: 350px; }
+}
+
 @media (max-width: 700px) {
-    .pricing-grid { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
     .header-nav { display: none; }
     .hero-badges { flex-direction: column; align-items: center; }
     .cta-actions { flex-direction: column; align-items: center; }
+    .cta-actions .btn-primary-cta,
+    .cta-actions .btn-outline-cta { width: 100%; max-width: 320px; justify-content: center; }
     .footer-inner { flex-direction: column; text-align: center; }
+    .footer-links { justify-content: center; }
     .compare-table { font-size: 0.82rem; }
     .compare-table thead th, .compare-table tbody td { padding: 12px 10px; }
+    .back-btn { padding: 8px 16px; font-size: 0.82rem; }
+    .offer-banner { font-size: 0.85rem; gap: 8px; }
+    .hero-glow-1 { width: 300px; height: 300px; right: -100px; }
+    .hero-glow-2 { width: 250px; height: 250px; left: -80px; }
+}
+
+@media (max-width: 480px) {
+    .header-inner { padding: 0 16px; height: 68px; }
+    .logo img { height: 52px; }
+    .back-btn { padding: 7px 14px; font-size: 0.8rem; gap: 5px; }
+
+    .pricing-hero { padding: 68px 16px 80px; }
+    .pricing-hero h1 { letter-spacing: -0.5px; }
+    .pricing-hero p { font-size: 0.95rem; }
+    .hero-badges { gap: 8px; }
+    .badge { font-size: 0.78rem; padding: 6px 14px; }
+    .hero-glow-1, .hero-glow-2 { display: none; }
+
+    .pricing-section { padding: 60px 16px; }
+    .section-header { margin-bottom: 40px; }
+    .pricing-card { padding: 28px 22px 26px; }
+    .amount { font-size: 2.1rem; }
+
+    .compare-section { padding: 60px 16px; }
+    .compare-table { font-size: 0.78rem; }
+    .compare-table thead th, .compare-table tbody td { padding: 10px 8px; }
+
+    .cta-section { padding: 60px 16px; }
+    .cta-section::before { display: none; }
+    .btn-primary-cta, .btn-outline-cta { padding: 13px 24px; font-size: 0.92rem; }
+
+    .pricing-footer { padding: 24px 16px; }
+    .footer-links { gap: 12px; }
+
+    .offer-banner { padding: 12px 16px; font-size: 0.82rem; flex-direction: column; gap: 6px; }
+    .offer-link { margin-left: 0; }
 }
 
 /* ── SCROLL DOWN ARROW ── */
@@ -232,4 +281,188 @@ ul { list-style: none; }
 @keyframes bounceDown {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(8px); }
+}
+
+/* =========================================
+   PRICING PAGE — QUALITY AUDIT IMPROVEMENTS
+   ========================================= */
+
+/* ── Mobile menu toggle button (hidden on desktop) ── */
+.pricing-mobile-toggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: var(--clr-primary);
+    color: var(--clr-white);
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+.pricing-mobile-toggle:hover {
+    background-color: var(--clr-primary-light);
+    transform: scale(1.05);
+}
+.pricing-mobile-toggle:focus-visible {
+    outline: 3px solid var(--clr-primary);
+    outline-offset: 3px;
+}
+
+/* ── Pricing page mobile dropdown menu ── */
+.pricing-mobile-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--clr-white);
+    border-bottom: 1px solid var(--clr-border);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+    box-shadow: 0 10px 30px rgba(72,10,121,0.1);
+    z-index: 100;
+}
+.pricing-mobile-menu.open {
+    max-height: 400px;
+}
+.pricing-mobile-menu ul {
+    list-style: none;
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.pricing-mobile-menu ul a {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--clr-text-main);
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    transition: color 0.2s;
+}
+.pricing-mobile-menu ul a:hover {
+    color: var(--clr-primary);
+}
+
+/* ── Show mobile toggle, hide nav on small screens ── */
+@media (max-width: 700px) {
+    .pricing-mobile-toggle { display: flex; }
+    .back-btn { display: none; }
+}
+
+@media (max-width: 480px) {
+    .header-inner { padding: 0 16px; position: relative; }
+}
+
+/* ── Fix header sticky position for relative-positioned dropdown ── */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+}
+
+/* ── Ensure header inner is relative for dropdown positioning ── */
+.header-inner {
+    position: relative;
+}
+
+/* ── WhatsApp Sticky CTA ── */
+.whatsapp-cta {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-color: #25D366;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.45);
+    z-index: 998;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+}
+.whatsapp-cta:hover {
+    transform: translateY(-4px) scale(1.08);
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.55);
+    color: #fff;
+}
+.whatsapp-cta:focus-visible {
+    outline: 3px solid #25D366;
+    outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+    .whatsapp-cta { bottom: 20px; right: 20px; width: 48px; height: 48px; font-size: 1.35rem; }
+}
+
+/* ── Improve compare table on very small screens ── */
+@media (max-width: 380px) {
+    .compare-table { font-size: 0.72rem; }
+    .compare-table thead th,
+    .compare-table tbody td { padding: 8px 5px; }
+}
+
+/* ── Add missing focus styles ── */
+.card-btn:focus-visible,
+.btn-primary-cta:focus-visible,
+.btn-outline-cta:focus-visible,
+.offer-link:focus-visible,
+.back-btn:focus-visible,
+.footer-back:focus-visible,
+.footer-links a:focus-visible,
+.header-nav .nav-link:focus-visible {
+    outline: 3px solid var(--clr-primary);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* ── Fix footer logo sizing ── */
+.footer-logo img {
+    height: 52px;
+    width: auto;
+}
+
+/* ── Improve footer on very small screens ── */
+@media (max-width: 360px) {
+    .footer-links { gap: 8px; }
+    .pricing-section { padding: 48px 12px; }
+    .compare-section { padding: 48px 12px; }
+    .cta-section { padding: 48px 12px; }
+}
+
+/* ── Pricing hero SEO: ensure h1 renders above fold ── */
+.pricing-hero h1 {
+    font-family: var(--font-heading);
+}
+
+/* ── Reduce compare table overflow on tablet ── */
+@media (max-width: 900px) {
+    .table-wrap {
+        -webkit-overflow-scrolling: touch;
+    }
+    .table-wrap::after {
+        content: 'Scroll →';
+        display: block;
+        text-align: right;
+        font-size: 0.78rem;
+        color: var(--clr-text-muted);
+        padding: 4px 8px 0;
+        opacity: 0.7;
+    }
+}
+
+/* ── Print styles ── */
+@media print {
+    .header, .whatsapp-cta, .scroll-down-arrow { display: none !important; }
+    .pricing-hero { background: var(--clr-primary) !important; }
+    body { color: #000; }
 }

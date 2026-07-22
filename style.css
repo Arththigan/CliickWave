@@ -289,32 +289,33 @@ p {
 }
 
 .logo {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     width: 140px;
-    height: 90px;
+    height: 62px;
+    overflow: hidden;
     position: relative;
     transition: var(--transition-normal);
 }
 
 .logo img {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    width: 140px;
-    height: 140px;
-    object-fit: contain;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    background-color: transparent;
     transition: var(--transition-normal);
 }
 
 .header.scrolled .logo {
-    height: 70px;
-    width: 110px;
+    height: 52px;
+    width: 118px;
 }
 
 .header.scrolled .logo img {
-    width: 110px;
-    height: 110px;
+    width: 100%;
+    height: 100%;
 }
 
 .nav-list {
@@ -950,37 +951,12 @@ p {
     object-fit: cover;
     object-position: center;
     display: block;
-    vertical-align: bottom;
     /* Slow, cinematic image transition */
     transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .portfolio-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 24px;
-    /* Elegant glassmorphic dark overlay instead of solid heavy black */
-    background: linear-gradient(
-        to top, 
-        rgba(15, 6, 26, 0.88) 0%, 
-        rgba(15, 6, 26, 0.65) 60%, 
-        rgba(15, 6, 26, 0) 100%
-    );
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    color: var(--clr-white);
-    opacity: 0;
-    transform: translateY(15px);
-    transition: 
-        opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.portfolio-item:hover .portfolio-overlay {
-    opacity: 1;
-    transform: translateY(0);
+    display: none;
 }
 
 .portfolio-item:hover .portfolio-img-wrapper img {
@@ -1160,7 +1136,7 @@ p {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(72,10,121,0.5) 0%, rgba(17,8,28,0.9) 100%);
+    background: radial-gradient(circle, rgba(72,10,121,0.5) 0%, rgba(17,8,28,0.85) 100%);
     z-index: 1;
 }
 
@@ -2188,22 +2164,102 @@ p {
 @media (max-width: 768px) {
     .hero { padding-top: 150px; }
     .hero-stats { flex-direction: column; gap: 32px; padding-top: 30px; }
-    .hero-cta { flex-direction: column; width: 100%; max-width: 320px; margin-left: auto; margin-right: auto; }
+    .hero-cta { flex-direction: column; width: 100%; max-width: 100%; margin-left: auto; margin-right: auto; }
     .hero-cta .btn { width: 100%; }
+    .hero-description { font-size: 1.05rem; }
     
-    .portfolio-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
-    .team-grid { grid-template-columns: 1fr; max-width: 320px; margin: 0 auto; }
-    .blog-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+    .portfolio-grid { grid-template-columns: 1fr; max-width: 100%; margin: 0 auto; }
+    .team-grid { grid-template-columns: repeat(2, 1fr); max-width: 100%; margin: 0 auto; }
+    .blog-grid { grid-template-columns: 1fr 1fr; max-width: 100%; margin: 0 auto; }
     .results-grid { grid-template-columns: 1fr 1fr; gap: 30px 20px; }
-    
+    .result-num { font-size: 2.5rem; }
+
     .form-grid { grid-template-columns: 1fr; gap: 0; }
     
     .footer-grid { grid-template-columns: 1fr; gap: 30px; }
     .footer-bottom-container { flex-direction: column; gap: 16px; text-align: center; }
+    
+    /* Testimonials */
+    .testimonial-slider-container { padding: 36px 24px 80px; }
+    .testimonial-text { font-size: 1.05rem; }
+    .testimonial-controls { bottom: 24px; right: 24px; }
+    
+    /* Video showcase */
+    .video-showcase-box { padding: 80px 24px; }
+
+    /* Services card */
+    .service-card { padding: 32px 24px; }
+}
+
+@media (max-width: 480px) {
+    .section { padding: 80px 0; }
+
+    /* Hero */
+    .hero { padding-top: 120px; padding-bottom: 60px; }
+    .hero-title { font-size: 2rem; }
+    .hero-description { font-size: 1rem; }
+    .hero-stats { gap: 24px; }
+    .stat-number { font-size: 2.2rem; }
+
+    /* About */
+    .about-boxes { gap: 14px; }
+    .mission-vision-box { padding: 18px 16px; gap: 14px; }
+
+    /* Services */
+    .service-card { padding: 28px 20px; }
+    .services-grid { grid-template-columns: minmax(min(320px, 100%), 1fr); gap: 20px; }
+
+    /* Process */
+    .process-timeline { padding-left: 0; gap: 28px; }
+    .step-title { font-size: 1rem; }
+    .step-desc { font-size: 0.82rem; }
+
+    /* Results */
+    .results-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+    .result-num { font-size: 2rem; }
+
+    /* Portfolio */
+    .portfolio-item { width: 280px; }
+
+    /* Team */
+    .team-grid { grid-template-columns: 1fr; max-width: 320px; margin: 0 auto; }
+
+    /* Blog */
+    .blog-grid { grid-template-columns: 1fr; max-width: 100%; }
+
+    /* Testimonials */
+    .testimonial-slider-container { padding: 28px 18px 72px; }
+    .testimonial-text { font-size: 1rem; }
+    .testimonial-author { gap: 12px; }
+    .author-avatar { width: 48px; height: 48px; font-size: 1.4rem; }
+
+    /* Video showcase */
+    .video-showcase-box { padding: 60px 20px; }
+    .play-btn { width: 64px; height: 64px; font-size: 1.4rem; }
+
+    /* Pricing */
+    .pricing-grid { grid-template-columns: 1fr; }
+
+    /* Contact */
+    .contact-form-wrapper { padding: 24px 18px; }
+    .contact-info-list { gap: 16px; }
+
+    /* Footer */
+    .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    .footer-links-col { padding: 0; }
+
+    /* Toast */
+    .toast-notification {
+        bottom: 16px;
+        right: 16px;
+        left: 16px;
+        min-width: unset;
+        max-width: unset;
+    }
 }
 
 /* =========================================
-   Scroll Reveal CSS System
+   Scroll Reveal / Animation Utilities
    ========================================= */
 .reveal-fade,
 .reveal-slide-up,
@@ -2350,4 +2406,593 @@ p {
     .hero-bg-glow {
         z-index: -2;
     }
+}
+
+/* =========================================
+   Toast Notification
+   ========================================= */
+.toast-notification {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 22px;
+    border-radius: var(--radius-md);
+    min-width: 320px;
+    max-width: 440px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--clr-white);
+
+    /* Start hidden — slides up on show */
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toast-success {
+    background: linear-gradient(135deg, #1a7a4a, #25a163);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.toast-error {
+    background: linear-gradient(135deg, #8b1a1a, #c0392b);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.toast-notification.toast-show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.toast-notification.toast-hide {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+}
+
+.toast-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+
+.toast-message {
+    flex: 1;
+    line-height: 1.45;
+}
+
+.toast-close {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    border-radius: 50%;
+    transition: color 0.2s, background 0.2s;
+    flex-shrink: 0;
+}
+
+.toast-close:hover {
+    color: var(--clr-white);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Submit button loading spin */
+@keyframes spinIcon {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.contact-form [type="submit"] .ph-circle-notch,
+.contact-form [type="submit"] i.ph-circle-notch {
+    display: inline-block;
+    animation: spinIcon 0.8s linear infinite;
+}
+
+@media (max-width: 480px) {
+    .toast-notification {
+        bottom: 16px;
+        right: 16px;
+        left: 16px;
+        min-width: unset;
+        max-width: unset;
+    }
+}
+
+/* =========================================
+   Skip Link (Accessibility)
+   ========================================= */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 16px;
+    z-index: 9999;
+    padding: 12px 24px;
+    background: var(--clr-primary);
+    color: var(--clr-white);
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    transition: top 0.2s;
+    text-decoration: none;
+}
+
+.skip-link:focus {
+    top: 0;
+    outline: 3px solid #FFD700;
+    outline-offset: 2px;
+}
+
+/* =========================================
+   Focus States (Accessibility & Keyboard Nav)
+   ========================================= */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--clr-primary);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* Remove default outline only when focus-visible is supported */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Form field focus */
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--clr-primary);
+    box-shadow: 0 0 0 3px rgba(72, 10, 121, 0.15);
+}
+
+/* Required field asterisk */
+.form-group label span[aria-hidden="true"] {
+    color: #c0392b;
+    margin-left: 2px;
+}
+
+/* =========================================
+   Form Validation States
+   ========================================= */
+.contact-form input:invalid:not(:placeholder-shown),
+.contact-form select:invalid:not(:placeholder-shown),
+.contact-form textarea:invalid:not(:placeholder-shown) {
+    border-color: #e74c3c;
+}
+
+.contact-form input:valid:not(:placeholder-shown) {
+    border-color: #27ae60;
+}
+
+/* =========================================
+   Image lazy-load fade-in
+   ========================================= */
+img[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+img[loading="lazy"].loaded {
+    opacity: 1;
+}
+
+/* =========================================
+   Improved Button Submit Icon
+   ========================================= */
+.btn .ph-paper-plane-tilt {
+    font-size: 1.1rem;
+    margin-right: 4px;
+}
+
+/* =========================================
+   Smooth scroll on all anchor links
+   ========================================= */
+html {
+    scroll-behavior: smooth;
+}
+
+/* =========================================
+   Print styles
+   ========================================= */
+@media print {
+    .header, .footer, .back-to-top, .skip-link, #webgl-canvas,
+    .video-modal, .portfolio-marquee { display: none !important; }
+    body { color: #000; background: #fff; }
+    a { color: #000; }
+}
+
+/* =========================================
+   QUALITY AUDIT IMPROVEMENTS
+   ========================================= */
+
+/* ── Fix: Section title missing class used in HTML ── */
+.section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.9rem, 3.8vw, 2.8rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    color: var(--clr-text-main);
+    margin-bottom: 20px;
+}
+
+/* ── Fix: Video showcase section with empty content ── */
+.video-showcase.section {
+    padding: 0;
+}
+
+.video-showcase-box {
+    border-radius: var(--radius-lg);
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Fix video bg to cover whole box */
+.video-showcase-bg {
+    border-radius: var(--radius-lg);
+}
+
+/* ── Fix: Overflow on hero at mobile ── */
+@media (max-width: 480px) {
+    .hero-container {
+        padding: 0 16px;
+    }
+    .hero-title {
+        font-size: clamp(1.8rem, 7vw, 2.2rem);
+        letter-spacing: -0.02em;
+    }
+    .hero-description {
+        font-size: 0.975rem;
+        margin-bottom: 32px;
+    }
+    .hero-cta {
+        gap: 12px;
+        margin-bottom: 48px;
+    }
+    .hero-cta .btn {
+        padding: 14px 28px;
+        font-size: 0.95rem;
+    }
+    .stat-number {
+        font-size: 1.9rem;
+    }
+}
+
+/* ── Fix: Nav overflow on medium screens ── */
+@media (max-width: 1100px) and (min-width: 992px) {
+    .nav-list { gap: 16px; }
+    .nav-link { font-size: 0.875rem; }
+    .logo { width: 124px; height: 56px; }
+    .logo img { width: 100%; height: 100%; }
+}
+
+/* ── Fix: Process timeline on 480-768 ── */
+@media (max-width: 768px) and (min-width: 481px) {
+    .process-timeline {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding-left: 20px;
+    }
+    .process-timeline::before {
+        top: 0; bottom: 0; left: 45px; width: 2px; height: 90%;
+        background-image: linear-gradient(to bottom, var(--clr-primary) 50%, rgba(255,255,255,0) 0%);
+        background-size: 2px 12px; background-repeat: repeat-y;
+    }
+    .timeline-step { text-align: left; display: flex; gap: 24px; align-items: center; }
+    .step-num { margin: 0; flex-shrink: 0; }
+}
+
+/* ── Fix: Blog grid on mobile ── */
+@media (max-width: 480px) {
+    .blog-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Improvement: Contact form full width on mobile ── */
+@media (max-width: 600px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .contact-form-wrapper { padding: 28px 20px; }
+}
+
+/* ── Improvement: Footer logo sizing fix ── */
+.footer-logo {
+    height: auto;
+    width: auto;
+    display: block;
+    position: static;
+}
+.footer-logo img {
+    position: static;
+    transform: none;
+    width: 140px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+/* ── Improvement: Social icons accessible hit area ── */
+.social-links a {
+    min-width: 44px;
+    min-height: 44px;
+}
+
+/* ── Improvement: Stronger focus rings on all interactive elements ── */
+.btn:focus-visible,
+.card-btn:focus-visible,
+.faq-question:focus-visible,
+.slider-btn:focus-visible,
+.back-to-top:focus-visible,
+.menu-toggle:focus-visible,
+.social-links a:focus-visible {
+    outline: 3px solid var(--clr-primary);
+    outline-offset: 3px;
+}
+
+/* ── Improvement: Make mobile menu links bigger tap targets ── */
+.mobile-nav-link {
+    padding: 10px 0;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+}
+
+/* ── Improvement: Ensure portfolio marquee doesn't overflow on mobile ── */
+@media (max-width: 480px) {
+    .portfolio-item { width: 260px; }
+    .portfolio-marquee::before,
+    .portfolio-marquee::after { width: 60px; }
+}
+
+/* ── Improvement: Prevent text overflow on small cards ── */
+.service-card-title,
+.blog-card-title,
+.why-card-title,
+.team-name {
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+/* ── Improvement: Testimonial slider controls accessible ── */
+.testimonial-controls {
+    gap: 12px;
+}
+
+/* ── Improvement: About section image aspect ratio stable ── */
+.about-image {
+    aspect-ratio: 4/3;
+    object-fit: cover;
+}
+
+/* ── Fix: Results section padding ── */
+.results.section {
+    background: linear-gradient(135deg, #1a003a 0%, var(--clr-primary-dark) 40%, var(--clr-primary) 100%);
+    padding: 100px 0;
+}
+
+.result-num {
+    color: #ffffff;
+}
+
+.result-label {
+    color: rgba(255,255,255,0.75);
+}
+
+/* ── Fix: Final CTA padding/typography on mobile ── */
+@media (max-width: 768px) {
+    .final-cta { padding: 80px 0; }
+    .final-cta-subtitle { font-size: clamp(1.2rem, 4vw, 1.8rem); }
+}
+
+@media (max-width: 480px) {
+    .final-cta { padding: 60px 0; }
+}
+
+/* ── Improvement: Add smooth transition to FAQ answer height ── */
+.faq-answer {
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Improvement: Better button contrast ── */
+.btn-outline {
+    color: var(--clr-primary);
+    border-color: var(--clr-primary);
+    font-weight: 600;
+}
+
+/* ── Fix: Ensure loading="lazy" images on blog and trusted by show ── */
+.blog-card-img-wrapper img,
+.brand-logo-img,
+.portfolio-img-wrapper img,
+.about-image {
+    opacity: 1 !important; /* Override lazy opacity for immediately visible imgs */
+}
+
+/* ── Improvement: Smooth hover on nav links ── */
+.nav-link {
+    transition: color var(--transition-fast);
+}
+
+/* ── Improvement: Sticky header shadow when scrolled ── */
+.header.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 20px rgba(72, 10, 121, 0.1);
+}
+
+/* ── Fix: team grid on small mobiles ── */
+@media (max-width: 360px) {
+    .team-grid { grid-template-columns: 1fr; max-width: 100%; }
+    .section { padding: 60px 0; }
+    .container { padding: 0 14px; }
+    .hero { padding-top: 110px; }
+}
+
+/* ── Improvement: Add WhatsApp sticky CTA button for mobile ── */
+.whatsapp-cta {
+    position: fixed;
+    bottom: 90px;
+    right: 30px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-color: #25D366;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.45);
+    z-index: 998;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+}
+.whatsapp-cta:hover {
+    transform: translateY(-4px) scale(1.08);
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.55);
+    color: #fff;
+}
+.whatsapp-cta:focus-visible {
+    outline: 3px solid #25D366;
+    outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+    .whatsapp-cta { bottom: 80px; right: 20px; width: 48px; height: 48px; font-size: 1.35rem; }
+    .back-to-top { bottom: 20px; }
+    .back-to-top.visible { right: 20px; }
+}
+
+/* ── Improvement: Pricing section inside index.html padding ── */
+#pricing.pricing.section {
+    padding: 100px 0;
+}
+
+/* ── Improvement: Add loading skeleton for images ── */
+img {
+    background-color: var(--clr-bg-alt);
+}
+
+/* ── Improvement: Better select styling ── */
+.form-group select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23480A79'%3E%3Cpath d='M8 10.5L3 5.5h10L8 10.5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 16px;
+    padding-right: 44px;
+    cursor: pointer;
+}
+
+/* ── Improvement: Form textarea min-height ── */
+.form-group textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+/* ── Fix: Ensure mission box text white ── */
+.mission-vision-box.mission .box-text {
+    color: rgba(255, 255, 255, 0.88);
+    margin: 0;
+}
+
+/* ── Improvement: Add active nav state ── */
+.nav-link.active-section {
+    color: var(--clr-primary);
+    font-weight: 600;
+}
+.nav-link.active-section::after {
+    width: 100%;
+}
+
+/* ── Improvement: Section header text sizing ── */
+.section-subtitle {
+    color: var(--clr-text-muted);
+    line-height: 1.65;
+}
+
+/* ── Fix: Portfolio section background for section-alt ── */
+.portfolio.section {
+    background-color: var(--clr-bg-main);
+}
+
+/* ── Fix: Blog card title link colour ── */
+.blog-card-title a {
+    color: var(--clr-text-main);
+    transition: color var(--transition-fast);
+}
+.blog-card-title a:hover {
+    color: var(--clr-primary);
+}
+
+/* ── Improvement: Ensure contact detail-link visible ── */
+.detail-link {
+    color: var(--clr-text-main);
+    font-weight: 600;
+    font-size: 1.05rem;
+    display: block;
+    transition: color var(--transition-fast);
+}
+.detail-link:hover { color: var(--clr-primary); }
+
+/* ── Fix: Footer brand col not overflowing ── */
+.footer-brand {
+    max-width: 320px;
+}
+@media (max-width: 768px) {
+    .footer-brand { max-width: 100%; }
+}
+
+/* ── Improvement: Service card equal height ── */
+.services-grid {
+    align-items: stretch;
+}
+.service-card {
+    display: flex;
+    flex-direction: column;
+}
+.service-features {
+    margin-top: auto;
+}
+
+/* ── Fix: Why section grid on tablet ── */
+@media (max-width: 768px) {
+    .why-grid { gap: 40px; }
+    .why-desc { font-size: 1rem; }
+}
+
+/* ── Improvement: Reduce animation-heavy 3D on low-end devices ── */
+@media (max-width: 991px) {
+    .service-card,
+    .team-card,
+    .blog-card,
+    .pricing-card {
+        transform-style: flat;
+    }
+}
+
+/* ── Fix: Trusted by logos on alt section background ── */
+.logo-marquee::before {
+    background: linear-gradient(to right, var(--clr-bg-main) 0%, rgba(255,255,255,0) 100%);
+}
+.logo-marquee::after {
+    background: linear-gradient(to left, var(--clr-bg-main) 0%, rgba(255,255,255,0) 100%);
 }

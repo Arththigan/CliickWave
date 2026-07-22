@@ -3,38 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CliickWave | Creative Digital Marketing & Branding Agency</title>
-    <meta name="description" content="CliickWave is a creative digital marketing and branding agency helping businesses build memorable brands through strategy, design, content, and technology.">
+    <title>CliickWave | Creative Digital Marketing & Branding Agency in Sri Lanka</title>
+    <meta name="description" content="CliickWave is a creative digital marketing and branding agency in Sri Lanka. We help businesses grow with social media marketing, logo design, web development, content creation, and more.">
+    <meta name="keywords" content="digital marketing agency Sri Lanka, social media marketing, logo design, web development, branding agency, content creation, SEO Sri Lanka">
+    <meta name="author" content="CliickWave">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cliickwave.lk/">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cliickwave.lk/">
+    <meta property="og:title" content="CliickWave | Creative Digital Marketing & Branding Agency">
+    <meta property="og:description" content="CliickWave helps businesses grow with social media marketing, branding, web development, and content creation.">
+    <meta property="og:image" content="https://cliickwave.lk/images/CliickWave-logo-png.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CliickWave | Creative Digital Marketing & Branding Agency">
+    <meta name="twitter:description" content="CliickWave helps businesses grow with social media marketing, branding, web development, and content creation.">
+    <meta name="twitter:image" content="https://cliickwave.lk/images/CliickWave-logo-png.png">
+
+    <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="images/CliickWave-logo-png.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="images/CliickWave-logo-png.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/CliickWave-logo-png.png">
     <link rel="apple-touch-icon" sizes="180x180" href="images/CliickWave-logo-png.png">
+
+    <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <!-- Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <!-- Three.js for 3D animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <!-- GSAP & ScrollTrigger for scroll-driven 3D animation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
+
+    <!-- Three.js & GSAP — deferred for performance -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+    <!-- Preload critical above-the-fold image -->
+    <link rel="preload" as="image" href="images/CliickWave-logo-png.svg">
+    <link rel="preload" as="image" href="images/about_us_graphic.png">
+
     <link rel="stylesheet" href="style.css">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MarketingAgency",
+      "name": "CliickWave",
+      "url": "https://cliickwave.lk",
+      "logo": "https://cliickwave.lk/images/CliickWave-logo-png.png",
+      "description": "Creative digital marketing and branding agency in Sri Lanka.",
+      "telephone": "+94742775726",
+      "email": "cliickwave.lk@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "LK"
+      },
+      "sameAs": [
+        "https://www.instagram.com/cliickwave/",
+        "https://www.facebook.com/share/1DWgo9R8Wj/",
+        "https://www.linkedin.com/company/clickwavee/"
+      ]
+    }
+    </script>
 </head>
 <body>
 
+    <!-- Skip to main content (Accessibility) -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- WebGL 3D Particle / Stone Effect Canvas -->
-    <canvas id="webgl-canvas"></canvas>
+    <canvas id="webgl-canvas" aria-hidden="true"></canvas>
 
     <!-- Header & Navigation -->
-    <header class="header" id="header">
+    <header class="header" id="header" role="banner">
         <div class="container header-container">
-            <a href="#" class="logo">
-                <img src="images/CliickWave-logo-png.svg" alt="CliickWave Logo">
+            <a href="#home" class="logo" aria-label="CliickWave — Home">
+                <img src="images/CliickWave-logo-png.svg" alt="CliickWave Logo" width="140" height="62" fetchpriority="high">
             </a>
             
-            <nav class="nav" id="nav-menu">
-                <ul class="nav-list">
+            <nav class="nav" id="nav-menu" aria-label="Main navigation">
+                <ul class="nav-list" role="list">
                     <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
                     <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
@@ -50,15 +107,15 @@
             
             <div class="header-actions">
                 <a href="#contact" class="btn btn-primary btn-sm header-cta-btn">Start Your Project</a>
-                <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
-                    <i class="ph ph-list" id="menu-icon"></i>
+                <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+                    <i class="ph ph-list" id="menu-icon" aria-hidden="true"></i>
                 </button>
             </div>
         </div>
         
-        <!-- Mobile Dropdown Menu -->
-        <div class="mobile-menu" id="mobile-menu">
-            <ul class="mobile-nav-list">
+        <!-- Mobile Dropdown Menu Drawer -->
+        <div class="mobile-menu" id="mobile-menu" aria-hidden="true" role="navigation" aria-label="Mobile navigation">
+            <ul class="mobile-nav-list" role="list">
                 <li class="mobile-nav-item"><a href="#home" class="mobile-nav-link">Home</a></li>
                 <li class="mobile-nav-item"><a href="#about" class="mobile-nav-link">About</a></li>
                 <li class="mobile-nav-item"><a href="#services" class="mobile-nav-link">Services</a></li>
@@ -73,7 +130,7 @@
         </div>
     </header>
 
-    <main>
+    <main id="main-content">
         <!-- 1. Hero Section -->
         <section id="home" class="hero">
 
@@ -115,7 +172,7 @@
             <div class="container">
                 <div class="about-grid">
                     <div class="about-image-wrapper reveal-slide-right">
-                        <img src="images/about_us_graphic.png" alt="About CliickWave Graphic" class="about-image">
+                        <img src="images/about_us_graphic.png" alt="CliickWave team working on digital marketing strategies" class="about-image" width="560" height="420" loading="eager">
                     </div>
                     <div class="about-content reveal-slide-left">
                         <div class="section-tag">About Us</div>
@@ -390,54 +447,54 @@
                     <div class="portfolio-marquee-track">
                         <!-- Original 8 Items -->
                         <div class="portfolio-item">
-                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-11 at 9.40.32 PM.jpeg" alt="Client Logo 1"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 1</h3></div></div>
+                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-11 at 9.40.32 PM.jpeg" alt="Client Logo Design — Project 1" loading="lazy" width="330" height="248"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 1</h3></div></div>
                         </div>
                         <div class="portfolio-item">
-                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-11 at 9.40.33 PM.jpeg" alt="Client Logo 2"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 2</h3></div></div>
+                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-11 at 9.40.33 PM.jpeg" alt="Client Logo Design — Project 2" loading="lazy" width="330" height="248"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 2</h3></div></div>
                         </div>
                         <div class="portfolio-item">
-                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-11 at 9.40.34 PM (1).jpeg" alt="Client Logo 3"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 3</h3></div></div>
+                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-11 at 9.40.34 PM (1).jpeg" alt="Client Logo Design — Project 3" loading="lazy" width="330" height="248"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 3</h3></div></div>
                         </div>
                         <div class="portfolio-item">
-                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-11 at 9.40.34 PM.jpeg" alt="Client Logo 4"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 4</h3></div></div>
+                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-11 at 9.40.34 PM.jpeg" alt="Client Logo Design — Project 4" loading="lazy" width="330" height="248"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 4</h3></div></div>
                         </div>
                         <div class="portfolio-item">
-                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-11 at 9.40.35 PM.jpeg" alt="Client Logo 5"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 5</h3></div></div>
+                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-11 at 9.40.35 PM.jpeg" alt="Client Logo Design — Project 5" loading="lazy" width="330" height="248"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 5</h3></div></div>
                         </div>
                         <div class="portfolio-item">
-                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-11 at 9.40.36 PM.jpeg" alt="Client Logo 6"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 6</h3></div></div>
+                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-11 at 9.40.36 PM.jpeg" alt="Client Logo Design — Project 6" loading="lazy" width="330" height="248"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 6</h3></div></div>
                         </div>
                         <div class="portfolio-item">
-                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-11 at 9.49.35 PM.jpeg" alt="Client Logo 7"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 7</h3></div></div>
+                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-11 at 9.49.35 PM.jpeg" alt="Client Logo Design — Project 7" loading="lazy" width="330" height="248"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 7</h3></div></div>
                         </div>
                         <div class="portfolio-item">
-                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-12 at 2.17.21 PM.jpeg" alt="Client Logo 8"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 8</h3></div></div>
+                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-12 at 2.17.21 PM.jpeg" alt="Client Logo Design — Project 8" loading="lazy" width="330" height="248"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 8</h3></div></div>
                         </div>
 
                         <!-- Duplicate 8 Items for continuous loop -->
-                        <div class="portfolio-item">
-                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-11 at 9.40.32 PM.jpeg" alt="Client Logo 1"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 1</h3></div></div>
+                        <div class="portfolio-item" aria-hidden="true">
+                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-11 at 9.40.32 PM.jpeg" alt="" loading="lazy" width="330" height="248"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 1</h3></div></div>
                         </div>
-                        <div class="portfolio-item">
-                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-11 at 9.40.33 PM.jpeg" alt="Client Logo 2"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 2</h3></div></div>
+                        <div class="portfolio-item" aria-hidden="true">
+                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-11 at 9.40.33 PM.jpeg" alt="" loading="lazy" width="330" height="248"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 2</h3></div></div>
                         </div>
-                        <div class="portfolio-item">
-                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-11 at 9.40.34 PM (1).jpeg" alt="Client Logo 3"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 3</h3></div></div>
+                        <div class="portfolio-item" aria-hidden="true">
+                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-11 at 9.40.34 PM (1).jpeg" alt="" loading="lazy" width="330" height="248"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 3</h3></div></div>
                         </div>
-                        <div class="portfolio-item">
-                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-11 at 9.40.34 PM.jpeg" alt="Client Logo 4"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 4</h3></div></div>
+                        <div class="portfolio-item" aria-hidden="true">
+                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-11 at 9.40.34 PM.jpeg" alt="" loading="lazy" width="330" height="248"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 4</h3></div></div>
                         </div>
-                        <div class="portfolio-item">
-                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-11 at 9.40.35 PM.jpeg" alt="Client Logo 5"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 5</h3></div></div>
+                        <div class="portfolio-item" aria-hidden="true">
+                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-11 at 9.40.35 PM.jpeg" alt="" loading="lazy" width="330" height="248"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 5</h3></div></div>
                         </div>
-                        <div class="portfolio-item">
-                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-11 at 9.40.36 PM.jpeg" alt="Client Logo 6"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 6</h3></div></div>
+                        <div class="portfolio-item" aria-hidden="true">
+                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-11 at 9.40.36 PM.jpeg" alt="" loading="lazy" width="330" height="248"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 6</h3></div></div>
                         </div>
-                        <div class="portfolio-item">
-                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-11 at 9.49.35 PM.jpeg" alt="Client Logo 7"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 7</h3></div></div>
+                        <div class="portfolio-item" aria-hidden="true">
+                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-11 at 9.49.35 PM.jpeg" alt="" loading="lazy" width="330" height="248"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 7</h3></div></div>
                         </div>
-                        <div class="portfolio-item">
-                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-12 at 2.17.21 PM.jpeg" alt="Client Logo 8"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 8</h3></div></div>
+                        <div class="portfolio-item" aria-hidden="true">
+                            <div class="portfolio-img-wrapper"><img src="images/logoes/WhatsApp Image 2026-07-12 at 2.17.21 PM.jpeg" alt="" loading="lazy" width="330" height="248"><div class="portfolio-overlay"><span class="portfolio-cat">Logo Design</span><h3 class="portfolio-item-title">Client Logo 8</h3></div></div>
                         </div>
                     </div>
                 </div>
@@ -446,15 +503,17 @@
 
 
         <!-- Video Showcase Premium Section -->
-        <section class="video-showcase section section-alt text-center">
+        <section class="video-showcase section section-alt text-center" aria-label="Brand video showcase">
             <div class="container">
                 <div class="video-showcase-box">
                     <!-- Background video -->
-                    <video class="video-showcase-bg" autoplay muted loop playsinline>
+                    <video class="video-showcase-bg" autoplay muted loop playsinline aria-hidden="true">
                         <source src="images/Liquid_forming_Clickwave_logo_202607161458.mp4" type="video/mp4">
                     </video>
-                    <div class="video-overlay-tint" style="display:none;"></div>
-                    <div class="video-showcase-content">
+                    <div class="video-overlay-tint"></div>
+                    <div class="video-showcase-content text-center">
+                        <h2 class="video-showcase-title">See CliickWave in Action</h2>
+                        <p class="video-showcase-desc">Watch how we craft digital identities that make brands unforgettable.</p>
                     </div>
                 </div>
             </div>
@@ -519,41 +578,41 @@
                 <!-- 8. Trusted By -->
                 <div class="trusted-by">
                     <p class="trusted-title text-center">TRUSTED BY INNOVATIVE BRANDS</p>
-                    <div class="logo-marquee">
+                    <div class="logo-marquee" role="region" aria-label="Brands we've collaborated with">
                         <div class="logo-marquee-track">
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144033.png" alt="Brand Logo 1"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144154.png" alt="Brand Logo 2"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144212.png" alt="Brand Logo 3"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144231.png" alt="Brand Logo 4"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144250.png" alt="Brand Logo 5"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144309.png" alt="Brand Logo 6"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144329.png" alt="Brand Logo 7"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144353.png" alt="Brand Logo 8"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144414.png" alt="Brand Logo 9"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144434.png" alt="Brand Logo 10"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144503.png" alt="Brand Logo 11"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144528.png" alt="Brand Logo 12"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144556.png" alt="Brand Logo 13"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144615.png" alt="Brand Logo 14"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144639.png" alt="Brand Logo 15"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144658.png" alt="Brand Logo 16"></div>
+                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144033.png" alt="Collaborated brand 1" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144154.png" alt="Collaborated brand 2" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144212.png" alt="Collaborated brand 3" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144231.png" alt="Collaborated brand 4" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144250.png" alt="Collaborated brand 5" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144309.png" alt="Collaborated brand 6" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144329.png" alt="Collaborated brand 7" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144353.png" alt="Collaborated brand 8" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144414.png" alt="Collaborated brand 9" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144434.png" alt="Collaborated brand 10" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144503.png" alt="Collaborated brand 11" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144528.png" alt="Collaborated brand 12" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144556.png" alt="Collaborated brand 13" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144615.png" alt="Collaborated brand 14" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144639.png" alt="Collaborated brand 15" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144658.png" alt="Collaborated brand 16" loading="lazy" width="65" height="65"></div>
                             <!-- Duplicate for continuous loop -->
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144033.png" alt="Brand Logo 1"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144154.png" alt="Brand Logo 2"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144212.png" alt="Brand Logo 3"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144231.png" alt="Brand Logo 4"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144250.png" alt="Brand Logo 5"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144309.png" alt="Brand Logo 6"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144329.png" alt="Brand Logo 7"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144353.png" alt="Brand Logo 8"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144414.png" alt="Brand Logo 9"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144434.png" alt="Brand Logo 10"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144503.png" alt="Brand Logo 11"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144528.png" alt="Brand Logo 12"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144556.png" alt="Brand Logo 13"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144615.png" alt="Brand Logo 14"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144639.png" alt="Brand Logo 15"></div>
-                            <div class="brand-logo-token"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144658.png" alt="Brand Logo 16"></div>
+                            <div class="brand-logo-token" aria-hidden="true"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144033.png" alt="" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token" aria-hidden="true"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144154.png" alt="" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token" aria-hidden="true"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144212.png" alt="" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token" aria-hidden="true"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144231.png" alt="" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token" aria-hidden="true"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144250.png" alt="" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token" aria-hidden="true"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144309.png" alt="" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token" aria-hidden="true"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144329.png" alt="" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token" aria-hidden="true"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144353.png" alt="" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token" aria-hidden="true"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144414.png" alt="" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token" aria-hidden="true"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144434.png" alt="" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token" aria-hidden="true"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144503.png" alt="" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token" aria-hidden="true"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144528.png" alt="" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token" aria-hidden="true"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144556.png" alt="" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token" aria-hidden="true"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144615.png" alt="" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token" aria-hidden="true"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144639.png" alt="" loading="lazy" width="65" height="65"></div>
+                            <div class="brand-logo-token" aria-hidden="true"><img class="brand-logo-img" src="images/Collbrated brands_logos/Screenshot 2026-07-17 144658.png" alt="" loading="lazy" width="65" height="65"></div>
                         </div>
                     </div>
                 </div>
@@ -561,7 +620,7 @@
         </section>
 
         <!-- 9. Results Section -->
-        <section class="results section section-alt text-center reveal-fade">
+        <section id="results" class="results section section-alt text-center reveal-fade" aria-label="Our key results and statistics">
             <div class="container">
                 <div class="results-grid">
                     <div class="result-item">
@@ -659,7 +718,7 @@
                     <!-- Blog Post 1 -->
                     <div class="blog-card reveal-slide-up">
                         <div class="blog-card-img-wrapper">
-                            <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=600&q=80" alt="How to Boost Conversions with Minimalist Layouts">
+                            <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=600&q=80" alt="Minimalist web layout for higher conversions" loading="lazy" width="600" height="220">
                         </div>
                         <div class="blog-card-body">
                             <span class="blog-category">Marketing Tips</span>
@@ -671,7 +730,7 @@
                     <!-- Blog Post 2 -->
                     <div class="blog-card reveal-slide-up delay-200">
                         <div class="blog-card-img-wrapper">
-                            <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&q=80" alt="Why Deep Violet represents the Premium Brand of 2026">
+                            <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&q=80" alt="Deep violet brand colour psychology" loading="lazy" width="600" height="220">
                         </div>
                         <div class="blog-card-body">
                             <span class="blog-category">Branding</span>
@@ -683,7 +742,7 @@
                     <!-- Blog Post 3 -->
                     <div class="blog-card reveal-slide-up delay-400">
                         <div class="blog-card-img-wrapper">
-                            <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=80" alt="Micro-Animations: The Secrets Behind Luxury User Interface">
+                            <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=80" alt="Micro-animations in luxury UI design" loading="lazy" width="600" height="220">
                         </div>
                         <div class="blog-card-body">
                             <span class="blog-category">Website Design</span>
@@ -795,44 +854,60 @@
                     </div>
                     
                     <div class="contact-form-wrapper reveal-slide-left">
-                        <form class="contact-form" id="project-contact-form">
+                        <form class="contact-form" id="project-contact-form" novalidate>
                             <div class="form-grid">
                                 <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input type="text" id="name" required placeholder="John Doe">
+                                    <label for="name">Full Name <span aria-hidden="true">*</span></label>
+                                    <input type="text" id="name" name="name" required autocomplete="name" placeholder="John Doe" aria-required="true">
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" id="email" required placeholder="john@example.com">
+                                    <label for="email">Email <span aria-hidden="true">*</span></label>
+                                    <input type="email" id="email" name="email" required autocomplete="email" placeholder="john@example.com" aria-required="true">
                                 </div>
                             </div>
                             <div class="form-grid">
                                 <div class="form-group">
                                     <label for="phone">Phone</label>
-                                    <input type="tel" id="phone" placeholder="+94 77 123 4567">
+                                    <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+94 77 123 4567">
                                 </div>
                                 <div class="form-group">
                                     <label for="company">Company</label>
-                                    <input type="text" id="company" placeholder="Company Name">
+                                    <input type="text" id="company" name="organization" autocomplete="organization" placeholder="Company Name">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="service">Service Needed</label>
-                                <select id="service" required>
+                                <label for="service">Service Needed <span aria-hidden="true">*</span></label>
+                                <select id="service" name="service" required aria-required="true">
                                     <option value="" disabled selected>Select a Service</option>
-                                    <option value="social-media">Social Media Management</option>
-                                    <option value="web-dev">Website Design & Development</option>
-                                    <option value="paid-ads">Paid Ads (Google & Facebook)</option>
-                                    <option value="email-marketing">Email Marketing</option>
-                                    <option value="branding">SEO & Branding</option>
-                                    <option value="content-creation">Content Marketing</option>
+
+                                    <optgroup label="── Services ──">
+                                        <option value="digital-marketing">Digital Marketing</option>
+                                        <option value="logo-design">Logo Design</option>
+                                        <option value="banner-design">Banner Design</option>
+                                        <option value="fb-post-design">FB Post Design</option>
+                                        <option value="insta-post-design">Instagram Post Design</option>
+                                        <option value="creative-design">Creative Design (Other)</option>
+                                        <option value="content-creation">Content Creation</option>
+                                        <option value="website-development">Website Development</option>
+                                        <option value="software-solutions">Software Solutions</option>
+                                        <option value="email-marketing">Email Marketing</option>
+                                    </optgroup>
+
+                                    <optgroup label="── Social Media Packages ──">
+                                        <option value="starter-wave">Starter Wave</option>
+                                        <option value="silver-wave">Silver Wave</option>
+                                        <option value="gold-wave">Gold Wave</option>
+                                        <option value="premium-wave">Premium Wave</option>
+                                    </optgroup>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="message">Message</label>
-                                <textarea id="message" rows="5" required placeholder="Tell us about your project..."></textarea>
+                                <label for="message">Message <span aria-hidden="true">*</span></label>
+                                <textarea id="message" name="message" rows="5" required aria-required="true" placeholder="Tell us about your project..."></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+                            <button type="submit" class="btn btn-primary btn-block">
+                                <i class="ph ph-paper-plane-tilt"></i> Send Message
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -850,11 +925,11 @@
     </main>
 
     <!-- 13. Footer -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="container footer-grid">
             <div class="footer-brand">
-                <a href="#" class="footer-logo">
-                    <img src="images/CliickWave-logo-png.svg" alt="CliickWave Logo">
+                <a href="#home" class="footer-logo" aria-label="CliickWave Home">
+                    <img src="images/CliickWave-logo-png.svg" alt="CliickWave Logo" width="140" height="60" loading="lazy">
                 </a>
                 <p class="footer-desc mt-4">Creative, data-driven digital marketing solutions that grow your brand and boost online success.</p>
             </div>
@@ -873,10 +948,12 @@
             <div class="footer-links-col">
                 <h4 class="footer-title">Services</h4>
                 <ul class="footer-links-list">
-                    <li><a href="#services">Social Media Management</a></li>
+                    <li><a href="#services">Digital Marketing</a></li>
+                    <li><a href="#services">Creative Design</a></li>
+                    <li><a href="#services">Content Creation</a></li>
                     <li><a href="#services">Website Development</a></li>
-                    <li><a href="#services">Paid Advertising</a></li>
-                    <li><a href="#services">SEO & Branding</a></li>
+                    <li><a href="#services">Software Solutions</a></li>
+                    <li><a href="#services">Email Marketing</a></li>
                 </ul>
             </div>
             
@@ -890,25 +967,20 @@
             <div class="container footer-bottom-container">
                 <p class="copyright">&copy; 2026 CliickWave. All rights reserved.</p>
                 <div class="footer-bottom-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms & Conditions</a>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-conditions.html">Terms & Conditions</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Video Modal Player -->
-    <div class="video-modal" id="video-modal">
-        <div class="video-modal-content">
-            <button class="close-modal" id="close-modal-btn" aria-label="Close Video"><i class="ph ph-x"></i></button>
-            <video id="modal-video" controls>
-                <source src="images/Liquid_forming_Clickwave_logo_202607161458.mp4" type="video/mp4">
-            </video>
-        </div>
-    </div>
-
     <!-- Back to Top Button -->
-    <button class="back-to-top" id="back-to-top-btn" aria-label="Back to Top"><i class="ph ph-arrow-up"></i></button>
+    <button class="back-to-top" id="back-to-top-btn" aria-label="Back to Top"><i class="ph ph-arrow-up" aria-hidden="true"></i></button>
+
+    <!-- WhatsApp Sticky CTA -->
+    <a href="https://wa.me/94742775726?text=Hi%20CliickWave!%20I'm%20interested%20in%20your%20services." class="whatsapp-cta" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">
+        <i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>
+    </a>
 
     <script src="script.js"></script>
     <!-- 3D stone particle effect (from phase-1-particle-effect branch) -->

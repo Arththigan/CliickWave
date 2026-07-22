@@ -3,8 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing Packages | CliickWave</title>
-    <meta name="description" content="Transparent social media pricing packages by CliickWave — Starter Wave, Silver Wave, Gold Wave & Premium Wave.">
+    <title>Pricing Packages | CliickWave — Social Media Marketing Sri Lanka</title>
+    <meta name="description" content="View CliickWave's transparent social media pricing packages. Starter Wave, Silver Wave, Gold Wave & Premium Wave — monthly plans starting from LKR 25,000.">
+    <meta name="keywords" content="social media marketing pricing Sri Lanka, digital marketing packages, CliickWave pricing, social media management cost">
+    <meta name="author" content="CliickWave">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cliickwave.lk/pricing.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cliickwave.lk/pricing.html">
+    <meta property="og:title" content="Pricing Packages | CliickWave">
+    <meta property="og:description" content="Transparent social media pricing packages by CliickWave. Plans starting from LKR 25,000/month.">
+    <meta property="og:image" content="https://cliickwave.lk/images/CliickWave-logo-png.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Pricing Packages | CliickWave">
+    <meta name="twitter:description" content="Transparent social media pricing packages — Starter, Silver, Gold & Premium Wave plans.">
     <link rel="icon" type="image/svg+xml" href="images/CliickWave-logo-png.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="images/CliickWave-logo-png.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,16 +28,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="pricing.css">
+    
+    <!-- Structured Data for Pricing Page -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "PriceSpecification",
+      "name": "CliickWave Social Media Packages",
+      "url": "https://cliickwave.lk/pricing.html",
+      "provider": {
+        "@type": "MarketingAgency",
+        "name": "CliickWave",
+        "url": "https://cliickwave.lk"
+      }
+    }
+    </script>
 </head>
 <body>
 
     <!-- Header -->
-    <header class="header">
+    <header class="header" role="banner">
         <div class="header-inner">
-            <a href="index.html" class="logo">
-                <img src="images/CliickWave-logo-png.svg" alt="CliickWave Logo">
+            <a href="index.html" class="logo" aria-label="CliickWave — Home">
+                <img src="images/CliickWave-logo-png.svg" alt="CliickWave Logo" width="140" height="70" fetchpriority="high">
             </a>
-            <nav class="header-nav">
+            <nav class="header-nav" aria-label="Site navigation">
                 <a href="index.html#about" class="nav-link">About</a>
                 <a href="index.html#services" class="nav-link">Services</a>
                 <a href="index.html#portfolio" class="nav-link">Portfolio</a>
@@ -29,8 +60,23 @@
                 <a href="index.html#contact" class="nav-link">Contact</a>
             </nav>
             <a href="index.html" class="back-btn">
-                <i class="ph ph-arrow-left"></i> Back to Home
+                <i class="ph ph-arrow-left" aria-hidden="true"></i> Back to Home
             </a>
+            <!-- Mobile menu toggle -->
+            <button class="pricing-mobile-toggle" id="pricing-menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="pricing-mobile-menu">
+                <i class="ph ph-list" id="pricing-menu-icon" aria-hidden="true"></i>
+            </button>
+        </div>
+        <!-- Mobile nav for pricing page -->
+        <div class="pricing-mobile-menu" id="pricing-mobile-menu" aria-hidden="true">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li><a href="index.html#testimonials">Testimonials</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
         </div>
     </header>
 
@@ -97,7 +143,7 @@
                     <li><i class="ph-fill ph-check-circle"></i> Social Media Channel Growth</li>
                     <li><i class="ph-fill ph-check-circle"></i> Paid Advertising Budget Guidance</li>
                 </ul>
-                <a href="index.html#contact" class="card-btn btn-outline">Get Started</a>
+                <a href="index.html?package=starter-wave#contact" class="card-btn btn-outline">Get Started</a>
             </div>
 
             <!-- Silver Wave -->
@@ -127,7 +173,7 @@
                     <li><i class="ph-fill ph-check-circle"></i> Social Media Channel Growth</li>
                     <li><i class="ph-fill ph-check-circle"></i> Paid Advertising Budget Guidance</li>
                 </ul>
-                <a href="index.html#contact" class="card-btn btn-outline">Get Started</a>
+                <a href="index.html?package=silver-wave#contact" class="card-btn btn-outline">Get Started</a>
             </div>
 
             <!-- Gold Wave — Featured -->
@@ -158,7 +204,7 @@
                     <li><i class="ph-fill ph-check-circle"></i> Social Media Channel Growth</li>
                     <li><i class="ph-fill ph-check-circle"></i> Paid Advertising Budget Guidance</li>
                 </ul>
-                <a href="index.html#contact" class="card-btn btn-primary">Get Started</a>
+                <a href="index.html?package=gold-wave#contact" class="card-btn btn-primary">Get Started</a>
             </div>
 
             <!-- Premium Wave -->
@@ -189,7 +235,7 @@
                     <li><i class="ph-fill ph-check-circle"></i> Social Media Channel Growth</li>
                     <li><i class="ph-fill ph-check-circle"></i> Paid Advertising Budget Guidance</li>
                 </ul>
-                <a href="index.html#contact" class="card-btn btn-premium">Get Started</a>
+                <a href="index.html?package=premium-wave#contact" class="card-btn btn-premium">Get Started</a>
             </div>
 
         </div>
@@ -247,10 +293,10 @@
     </section>
 
     <!-- Footer -->
-    <footer class="pricing-footer">
+    <footer class="pricing-footer" role="contentinfo">
         <div class="footer-inner">
-            <a href="index.html" class="footer-logo">
-                <img src="images/CliickWave-logo-png.svg" alt="CliickWave">
+            <a href="index.html" class="footer-logo" aria-label="CliickWave Home">
+                <img src="images/CliickWave-logo-png.svg" alt="CliickWave" width="120" height="60" loading="lazy">
             </a>
             <div class="footer-links">
                 <a href="index.html#home">Home</a>
@@ -260,11 +306,71 @@
                 <a href="index.html#testimonials">Testimonials</a>
                 <a href="index.html#blog">Blog</a>
                 <a href="index.html#contact">Contact</a>
+                <a href="privacy-policy.html">Privacy Policy</a>
             </div>
             <p>&copy; 2026 CliickWave. All rights reserved.</p>
-            <a href="index.html" class="footer-back"><i class="ph ph-arrow-left"></i> Back to Home</a>
+            <a href="index.html" class="footer-back"><i class="ph ph-arrow-left" aria-hidden="true"></i> Back to Home</a>
         </div>
     </footer>
+
+    <!-- WhatsApp Sticky CTA -->
+    <a href="https://wa.me/94742775726?text=Hi%20CliickWave!%20I'm%20interested%20in%20your%20pricing%20packages." class="whatsapp-cta" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">
+        <i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>
+    </a>
+
+    <script>
+        // Pricing page mobile menu toggle
+        const pricingToggle = document.getElementById('pricing-menu-toggle');
+        const pricingMobileMenu = document.getElementById('pricing-mobile-menu');
+        const pricingMenuIcon = document.getElementById('pricing-menu-icon');
+
+        if (pricingToggle && pricingMobileMenu) {
+            pricingToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isOpen = pricingMobileMenu.classList.toggle('open');
+                pricingMenuIcon.className = isOpen ? 'ph ph-x' : 'ph ph-list';
+                pricingToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                pricingToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+                pricingMobileMenu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!pricingMobileMenu.contains(e.target) && !pricingToggle.contains(e.target)) {
+                    pricingMobileMenu.classList.remove('open');
+                    pricingMenuIcon.className = 'ph ph-list';
+                    pricingToggle.setAttribute('aria-expanded', 'false');
+                    pricingMobileMenu.setAttribute('aria-hidden', 'true');
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && pricingMobileMenu.classList.contains('open')) {
+                    pricingMobileMenu.classList.remove('open');
+                    pricingMenuIcon.className = 'ph ph-list';
+                    pricingToggle.setAttribute('aria-expanded', 'false');
+                    pricingMobileMenu.setAttribute('aria-hidden', 'true');
+                    pricingToggle.focus();
+                }
+            });
+
+            // Close on link click
+            pricingMobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    pricingMobileMenu.classList.remove('open');
+                    pricingMenuIcon.className = 'ph ph-list';
+                    pricingToggle.setAttribute('aria-expanded', 'false');
+                    pricingMobileMenu.setAttribute('aria-hidden', 'true');
+                });
+            });
+        }
+
+        // Pause marquee on reduced motion
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.querySelectorAll('[style*="animation"]').forEach(el => {
+                el.style.animationPlayState = 'paused';
+            });
+        }
+    </script>
 
 </body>
 </html>

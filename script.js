@@ -1,6 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // =========================================
+    // Lazy Image Loading
+    // =========================================
+    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+    if ('IntersectionObserver' in window) {
+        const imgObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('loaded');
+                    imgObserver.unobserve(entry.target);
+                }
+            });
+        });
+        lazyImages.forEach(img => imgObserver.observe(img));
+    } else {
+        lazyImages.forEach(img => img.classList.add('loaded'));
+    }
+
+    // =========================================
     // 3D Hero Particle Wave (Three.js)
     // =========================================
     let scene, camera, renderer, particleWave, particleMaterial;
@@ -224,6 +242,11 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 menuIcon.className = 'ph ph-list';
             }
+
+            // Accessibility: update aria attributes
+            menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            menuToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+            mobileMenu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
         });
         
         // Close menu on navigation link clicks
@@ -232,6 +255,9 @@ document.addEventListener('DOMContentLoaded', () => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('open');
                 menuIcon.className = 'ph ph-list';
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', 'Open menu');
+                mobileMenu.setAttribute('aria-hidden', 'true');
             });
         });
         
@@ -240,6 +266,21 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
                 mobileMenu.classList.remove('open');
                 menuIcon.className = 'ph ph-list';
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', 'Open menu');
+                mobileMenu.setAttribute('aria-hidden', 'true');
+            }
+        });
+
+        // Close mobile menu on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+                mobileMenu.classList.remove('open');
+                menuIcon.className = 'ph ph-list';
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', 'Open menu');
+                mobileMenu.setAttribute('aria-hidden', 'true');
+                menuToggle.focus();
             }
         });
     }
@@ -404,13 +445,97 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Simple Form Submission Handler (simulation)
+    // Auto-select service from URL parameter (from pricing page Get Started buttons)
+    const urlParams = new URLSearchParams(window.location.search);
+    const packageParam = urlParams.get('package');
+    const serviceSelect = document.getElementById('service');
+
+    if (packageParam && serviceSelect) {
+        // Set the dropdown value
+        serviceSelect.value = packageParam;
+
+        // Scroll to contact section smoothly
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+            setTimeout(() => {
+                contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                // Highlight the dropdown briefly to draw attention
+                serviceSelect.style.transition = 'box-shadow 0.4s ease, border-color 0.4s ease';
+                serviceSelect.style.boxShadow = '0 0 0 3px rgba(72, 10, 121, 0.3)';
+                serviceSelect.style.borderColor = 'var(--clr-primary)';
+                setTimeout(() => {
+                    serviceSelect.style.boxShadow = '';
+                    serviceSelect.style.borderColor = '';
+                }, 2500);
+            }, 400);
+        }
+    }
+
+    // Toast Notification Helper
+    const showToast = (message, type = 'success') => {
+        // Remove existing toast if any
+        const existing = document.querySelector('.toast-notification');
+        if (existing) existing.remove();
+
+        const toast = document.createElement('div');
+        toast.className = `toast-notification toast-${type}`;
+        toast.innerHTML = `
+            <span class="toast-icon">
+                <i class="ph ph-${type === 'success' ? 'check-circle' : 'warning-circle'}"></i>
+            </span>
+            <span class="toast-message">${message}</span>
+            <button class="toast-close" aria-label="Close"><i class="ph ph-x"></i></button>
+        `;
+
+        document.body.appendChild(toast);
+
+        // Trigger entrance animation
+        requestAnimationFrame(() => toast.classList.add('toast-show'));
+
+        // Auto dismiss after 5s
+        const timer = setTimeout(() => dismissToast(toast), 5000);
+
+        // Manual close
+        toast.querySelector('.toast-close').addEventListener('click', () => {
+            clearTimeout(timer);
+            dismissToast(toast);
+        });
+    };
+
+    const dismissToast = (toast) => {
+        toast.classList.remove('toast-show');
+        toast.classList.add('toast-hide');
+        setTimeout(() => toast.remove(), 400);
+    };
+
+    // Form Submission Handler with Toast
     const contactForm = document.getElementById('project-contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('Thank you for reaching out! We will get in touch with you shortly.');
-            contactForm.reset();
+
+            const submitBtn = contactForm.querySelector('[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+
+            // Loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="ph ph-circle-notch"></i> Sending...';
+
+            // Simulate API call
+            setTimeout(() => {
+                const success = true; // Change to false to test error state
+
+                if (success) {
+                    showToast('🎉 Message sent! We\'ll get back to you soon!', 'success');
+                    contactForm.reset();
+                } else {
+                    showToast('Something went wrong. Please try again or contact us directly.', 'error');
+                }
+
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            }, 1500);
         });
     }
 
@@ -436,4 +561,33 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach(el => {
         revealObserver.observe(el);
     });
+
+    // =========================================
+    // Active Nav Section Highlighting
+    // =========================================
+    const navSections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinks.forEach(link => link.classList.remove('active-section'));
+                const activeLink = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+                if (activeLink) activeLink.classList.add('active-section');
+            }
+        });
+    }, {
+        rootMargin: '-30% 0px -60% 0px'
+    });
+
+    navSections.forEach(section => sectionObserver.observe(section));
+
+    // =========================================
+    // Pause marquee animations on reduced motion
+    // =========================================
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('.portfolio-marquee-track, .logo-marquee-track').forEach(el => {
+            el.style.animationPlayState = 'paused';
+        });
+    }
 });
