@@ -509,10 +509,10 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => toast.remove(), 400);
     };
 
-    // Form Submission Handler with Toast
+    // Formspree contact form submission with Toast feedback
     const contactForm = document.getElementById('project-contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             const submitBtn = contactForm.querySelector('[type="submit"]');
@@ -522,20 +522,28 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="ph ph-circle-notch"></i> Sending...';
 
-            // Simulate API call
-            setTimeout(() => {
-                const success = true; // Change to false to test error state
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: new FormData(contactForm),
+                    headers: { Accept: 'application/json' }
+                });
 
-                if (success) {
+                if (response.ok) {
                     showToast('🎉 Message sent! We\'ll get back to you soon!', 'success');
                     contactForm.reset();
                 } else {
-                    showToast('Something went wrong. Please try again or contact us directly.', 'error');
+                    const result = await response.json().catch(() => null);
+                    const message = result?.errors?.map(error => error.message).join(', ')
+                        || 'Something went wrong. Please try again.';
+                    showToast(message, 'error');
                 }
-
+            } catch (error) {
+                showToast('Unable to send. Check your connection and try again.', 'error');
+            } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalText;
-            }, 1500);
+            }
         });
     }
 

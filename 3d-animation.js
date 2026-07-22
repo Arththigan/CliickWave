@@ -136,6 +136,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------
     const meshGroup = new THREE.Group();
 
+    // Keep the stone at one deterministic size. Scroll restoration after a
+    // refresh must not leave it on one of the former oversized scale phases.
+    const STONE_SCALE = 0.9;
+    meshGroup.scale.setScalar(STONE_SCALE);
+
     // Central Faceted Mesh
     const mainGeometry = new THREE.IcosahedronGeometry(1.8, 5);
     const originalPositions = mainGeometry.attributes.position.clone();
@@ -227,28 +232,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Phase 1: Home to About ---
     scrollTl.to(meshGroup.position, { x: 1.6, y: -0.4, z: 0, ease: "power2.inOut" })
-        .to(meshGroup.scale, { x: 0.8, y: 0.8, z: 0.8, ease: "power2.inOut" }, "<")
         .to(mainColorProxy, { ...hexToRgb(0xEBE0FA), ease: "power2.inOut", onUpdate: () => mainColorProxy.update() }, "<")
         .to(wireColorProxy, { ...hexToRgb(0xF8E2FC), ease: "power2.inOut", onUpdate: () => wireColorProxy.update() }, "<")
         .to(particleSystem.rotation, { y: Math.PI * 0.25, z: Math.PI * 0.1, ease: "none" }, "<");
 
     // --- Phase 2: About to Services ---
     scrollTl.to(meshGroup.position, { x: -1.7, y: 0.2, z: -1, ease: "power2.inOut" })
-        .to(meshGroup.scale, { x: 0.7, y: 0.7, z: 0.7, ease: "power2.inOut" }, "<")
         .to(mainColorProxy, { ...hexToRgb(0xE0F7FA), ease: "power2.inOut", onUpdate: () => mainColorProxy.update() }, "<")
         .to(wireColorProxy, { ...hexToRgb(0x00ffff), ease: "power2.inOut", onUpdate: () => wireColorProxy.update() }, "<")
         .to(particleSystem.rotation, { y: Math.PI * 0.6, z: -Math.PI * 0.1, ease: "none" }, "<");
 
     // --- Phase 3: Services to Why Choose Us ---
     scrollTl.to(meshGroup.position, { x: 1.8, y: 0.3, z: 0, ease: "power2.inOut" })
-        .to(meshGroup.scale, { x: 0.85, y: 0.85, z: 0.85, ease: "power2.inOut" }, "<")
         .to(mainColorProxy, { ...hexToRgb(0xFCE4EC), ease: "power2.inOut", onUpdate: () => mainColorProxy.update() }, "<")
         .to(wireColorProxy, { ...hexToRgb(0xFFEBEE), ease: "power2.inOut", onUpdate: () => wireColorProxy.update() }, "<")
         .to(particleSystem.rotation, { y: Math.PI * 1.0, z: Math.PI * 0.25, ease: "none" }, "<");
 
     // --- Phase 4: Why Choose Us to Process Timeline ---
     scrollTl.to(meshGroup.position, { x: 0, y: -0.8, z: -2.5, ease: "power2.inOut" })
-        .to(meshGroup.scale, { x: 1.6, y: 1.6, z: 1.6, ease: "power2.inOut" }, "<")
         .to(mainColorProxy, { ...hexToRgb(0xF3E5F5), ease: "power2.inOut", onUpdate: () => mainColorProxy.update() }, "<")
         .to(mainMaterial, { opacity: 0.22, ease: "power2.inOut" }, "<")
         .to(wireColorProxy, { ...hexToRgb(0xE8D8FD), ease: "power2.inOut", onUpdate: () => wireColorProxy.update() }, "<")
@@ -257,7 +258,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Phase 5: Process to Portfolio & Videos ---
     scrollTl.to(meshGroup.position, { x: -1.6, y: -0.2, z: 0, ease: "power2.inOut" })
-        .to(meshGroup.scale, { x: 0.9, y: 0.9, z: 0.9, ease: "power2.inOut" }, "<")
         .to(mainColorProxy, { ...hexToRgb(0xF5EEFC), ease: "power2.inOut", onUpdate: () => mainColorProxy.update() }, "<")
         .to(mainMaterial, { opacity: 0.20, ease: "power2.inOut" }, "<")
         .to(wireColorProxy, { ...hexToRgb(0x8A2BE2), ease: "power2.inOut", onUpdate: () => wireColorProxy.update() }, "<")
@@ -266,7 +266,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Phase 6: Portfolio to Testimonials & Pricing ---
     scrollTl.to(meshGroup.position, { x: 1.5, y: 0.4, z: -0.5, ease: "power2.inOut" })
-        .to(meshGroup.scale, { x: 0.8, y: 0.8, z: 0.8, ease: "power2.inOut" }, "<")
         .to(mainColorProxy, { ...hexToRgb(0xEDE7F6), ease: "power2.inOut", onUpdate: () => mainColorProxy.update() }, "<")
         .to(mainMaterial, { opacity: 0.18, ease: "power2.inOut" }, "<")
         .to(wireColorProxy, { ...hexToRgb(0xF8E2FC), ease: "power2.inOut", onUpdate: () => wireColorProxy.update() }, "<")
@@ -275,14 +274,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Phase 7: Pricing to Blog & FAQ ---
     scrollTl.to(meshGroup.position, { x: -1.5, y: -0.3, z: -1, ease: "power2.inOut" })
-        .to(meshGroup.scale, { x: 0.75, y: 0.75, z: 0.75, ease: "power2.inOut" }, "<")
         .to(mainColorProxy, { ...hexToRgb(0xE0F2F1), ease: "power2.inOut", onUpdate: () => mainColorProxy.update() }, "<")
         .to(wireColorProxy, { ...hexToRgb(0x00ffff), ease: "power2.inOut", onUpdate: () => wireColorProxy.update() }, "<")
         .to(particleSystem.rotation, { y: Math.PI * 2.6, ease: "none" }, "<");
 
     // --- Phase 8: FAQ to Contact (Footer) ---
     scrollTl.to(meshGroup.position, { x: 0, y: 0.2, z: 0.5, ease: "power2.inOut" })
-        .to(meshGroup.scale, { x: 1.25, y: 1.25, z: 1.25, ease: "power2.inOut" }, "<")
         .to(mainColorProxy, { ...hexToRgb(0xF5F0FF), ease: "power2.inOut", onUpdate: () => mainColorProxy.update() }, "<")
         .to(mainMaterial, { opacity: 0.22, ease: "power2.inOut" }, "<")
         .to(wireColorProxy, { ...hexToRgb(0x8A2BE2), ease: "power2.inOut", onUpdate: () => wireColorProxy.update() }, "<")

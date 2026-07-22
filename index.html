@@ -854,7 +854,12 @@
                     </div>
                     
                     <div class="contact-form-wrapper reveal-slide-left">
-                        <form class="contact-form" id="project-contact-form" novalidate>
+                        <form class="contact-form" id="project-contact-form" action="https://formspree.io/f/maqrdwqk" method="POST">
+                            <input type="hidden" name="_subject" value="New Project Enquiry — CliickWave">
+                            <div class="form-honeypot" aria-hidden="true">
+                                <label for="contact-website-check">Leave this field empty</label>
+                                <input type="text" id="contact-website-check" name="_gotcha" tabindex="-1" autocomplete="off">
+                            </div>
                             <div class="form-grid">
                                 <div class="form-group">
                                     <label for="name">Full Name <span aria-hidden="true">*</span></label>
@@ -867,12 +872,12 @@
                             </div>
                             <div class="form-grid">
                                 <div class="form-group">
-                                    <label for="phone">Phone</label>
-                                    <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+94 77 123 4567">
+                                    <label for="phone">Phone Number <span aria-hidden="true">*</span></label>
+                                    <input type="tel" id="phone" name="phone" required autocomplete="tel" inputmode="tel" placeholder="+94 77 123 4567" aria-required="true">
                                 </div>
                                 <div class="form-group">
-                                    <label for="company">Company</label>
-                                    <input type="text" id="company" name="organization" autocomplete="organization" placeholder="Company Name">
+                                    <label for="website">Existing Website URL <span class="optional-label">(Optional)</span></label>
+                                    <input type="url" id="website" name="website" autocomplete="url" inputmode="url" placeholder="https://example.com">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -882,14 +887,35 @@
 
                                     <optgroup label="── Services ──">
                                         <option value="digital-marketing">Digital Marketing</option>
+                                        <option value="social-media-marketing">Social Media Marketing</option>
+                                        <option value="social-media-management">Social Media Management</option>
+                                        <option value="paid-advertising">Paid Advertising</option>
+                                        <option value="google-ads">Google Ads</option>
+                                        <option value="seo">SEO</option>
                                         <option value="logo-design">Logo Design</option>
+                                        <option value="brand-identity">Brand Identity</option>
+                                        <option value="social-media-designs">Social Media Designs</option>
+                                        <option value="packaging">Packaging</option>
+                                        <option value="print-design">Print Design</option>
                                         <option value="banner-design">Banner Design</option>
                                         <option value="fb-post-design">FB Post Design</option>
                                         <option value="insta-post-design">Instagram Post Design</option>
-                                        <option value="creative-design">Creative Design (Other)</option>
+                                        <option value="creative-design">Creative Design</option>
                                         <option value="content-creation">Content Creation</option>
+                                        <option value="photography">Photography</option>
+                                        <option value="videography">Videography</option>
+                                        <option value="reels">Reels</option>
+                                        <option value="product-shoots">Product Shoots</option>
+                                        <option value="motion-graphics">Motion Graphics</option>
                                         <option value="website-development">Website Development</option>
+                                        <option value="business-websites">Business Websites</option>
+                                        <option value="e-commerce">E-commerce</option>
+                                        <option value="landing-pages">Landing Pages</option>
+                                        <option value="ui-ux-design">UI/UX Design</option>
                                         <option value="software-solutions">Software Solutions</option>
+                                        <option value="custom-systems">Custom Systems</option>
+                                        <option value="mobile-apps">Mobile Apps</option>
+                                        <option value="web-applications">Web Applications</option>
                                         <option value="email-marketing">Email Marketing</option>
                                     </optgroup>
 
