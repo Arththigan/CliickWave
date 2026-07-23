@@ -466,3 +466,48 @@ ul { list-style: none; }
     .pricing-hero { background: var(--clr-primary) !important; }
     body { color: #000; }
 }
+
+/* Fluid responsive hardening */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+main, section, article, .header-inner, .hero-inner,
+.pricing-grid > *, .footer-inner > * { min-width: 0; }
+.pricing-section, .compare-section { padding-inline: clamp(12px, 3vw, 24px); }
+.pricing-card, .cta-inner, .section-header { min-width: 0; overflow-wrap: anywhere; }
+
+.pricing-mobile-menu.open {
+    max-height: min(400px, calc(100dvh - 68px));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.whatsapp-cta {
+    right: max(20px, env(safe-area-inset-right));
+    bottom: max(20px, env(safe-area-inset-bottom));
+}
+
+@media (max-width: 700px) {
+    .header-inner { padding-inline: clamp(12px, 4vw, 16px); }
+    .pricing-card { width: 100%; }
+    .cta-actions a { min-height: 44px; }
+}
+
+@media (max-width: 340px) {
+    .logo img { height: 46px; }
+    .pricing-mobile-toggle { width: 44px; height: 44px; }
+    .pricing-hero { padding-inline: 12px; }
+    .pricing-hero h1 { font-size: clamp(1.85rem, 11vw, 2.2rem); }
+    .pricing-card { padding-inline: 18px; }
+}
+
+@media (max-height: 600px) and (orientation: landscape) {
+    .pricing-hero { padding-top: 52px; padding-bottom: 60px; }
+    .pricing-mobile-menu.open { max-height: calc(100dvh - 68px); }
+}
+
+@media (hover: none), (pointer: coarse) {
+    .pricing-card:hover, .back-btn:hover, .whatsapp-cta:hover { transform: none; }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .header { background: rgba(255,255,255,.97); }
+}

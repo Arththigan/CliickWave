@@ -1,7 +1,7 @@
 // 3D Animated Scroll Website Engine - CliickWave
 // Built using Three.js, GSAP ScrollTrigger, and Lenis Smooth Scroll
 
-document.addEventListener('DOMContentLoaded', () => {
+const initCliickWave3D = () => {
     // -------------------------------------------------------------
     // 1. Lenis Smooth Scroll Initialization
     // -------------------------------------------------------------
@@ -37,6 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('webgl-canvas');
     if (!canvas) return;
 
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     const scene = new THREE.Scene();
     
     // Add atmospheric background fog
@@ -52,15 +55,21 @@ document.addEventListener('DOMContentLoaded', () => {
         powerPreference: "high-performance"
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Limit pixel ratio to 2 for performance
+    const maxPixelRatio = isMobile ? 1 : 1.5;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxPixelRatio));
 
     // Handle resizing window
+    let resizeFrame = null;
     window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    });
+        if (resizeFrame !== null) return;
+        resizeFrame = requestAnimationFrame(() => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxPixelRatio));
+            resizeFrame = null;
+        });
+    }, { passive: true });
 
     // -------------------------------------------------------------
     // 3. Lighting System
@@ -83,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------
     // 4. Background Particle System (Starfield / Floating Sparks)
     // -------------------------------------------------------------
-    const particlesCount = 1800;
+    const particlesCount = isMobile ? 320 : 750;
     const particlesGeometry = new THREE.BufferGeometry();
     const positions = new Float32Array(particlesCount * 3);
     const colors = new Float32Array(particlesCount * 3);
@@ -142,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
     meshGroup.scale.setScalar(STONE_SCALE);
 
     // Central Faceted Mesh
-    const mainGeometry = new THREE.IcosahedronGeometry(1.8, 5);
+    const mainGeometry = new THREE.IcosahedronGeometry(1.8, isMobile ? 2 : 3);
     const originalPositions = mainGeometry.attributes.position.clone();
 
     const mainMaterial = new THREE.MeshStandardMaterial({
@@ -296,8 +305,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------
     const clock = new THREE.Clock();
 
+    let frameCount = 0;
+    const geometryUpdateInterval = isMobile ? 3 : 2;
+
     const animate = () => {
         requestAnimationFrame(animate);
+
+        // Avoid expensive WebGL and geometry work in background tabs.
+        if (document.hidden) return;
 
         const time = clock.getElapsedTime();
 
@@ -321,9 +336,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // --- Geometric Morphing Logic ---
         // We deform the vertices of the icosahedron using a custom trigonometric wave field
-        const positions = mainGeometry.attributes.position;
-        
-        for (let i = 0; i < positions.count; i++) {
+        frameCount += 1;
+        if (frameCount % geometryUpdateInterval === 0) {
+            const positions = mainGeometry.attributes.position;
+
+            for (let i = 0; i < positions.count; i++) {
             // Get original positions of vertices
             const ux = originalPositions.getX(i);
             const uy = originalPositions.getY(i);
@@ -339,16 +356,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Offset the vertex slightly along its normal vector (outwards/inwards relative to origin)
             const ratio = 1 + wave;
-            positions.setXYZ(i, ux * ratio, uy * ratio, uz * ratio);
-        }
+                positions.setXYZ(i, ux * ratio, uy * ratio, uz * ratio);
+            }
 
-        // Inform WebGL buffer that positions were updated, and recalculate shading normals
-        mainGeometry.computeVertexNormals();
-        positions.needsUpdate = true;
+            // Update normals less often; this is the most expensive frame task.
+            mainGeometry.computeVertexNormals();
+            positions.needsUpdate = true;
+        }
 
         renderer.render(scene, camera);
     };
 
     // Begin render frame loop
-    animate();
-});
+    if (prefersReducedMotion) {
+        renderer.render(scene, camera);
+    } else {
+        animate();
+    }
+};
+
+const scheduleCliickWave3D = () => {
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(initCliickWave3D, { timeout: 1000 });
+    } else {
+        setTimeout(initCliickWave3D, 100);
+    }
+};
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', scheduleCliickWave3D, { once: true });
+} else {
+    scheduleCliickWave3D();
+}

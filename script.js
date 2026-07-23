@@ -171,6 +171,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initHero3D();
 
+    // Load the below-the-fold showcase video only when it is close to view.
+    const showcaseVideo = document.querySelector('.video-showcase-bg');
+    if (showcaseVideo) {
+        const loadShowcaseVideo = () => {
+            const source = showcaseVideo.querySelector('source[data-src]');
+            if (!source) return;
+            source.src = source.dataset.src;
+            source.removeAttribute('data-src');
+            showcaseVideo.load();
+            showcaseVideo.play().catch(() => {});
+        };
+
+        if ('IntersectionObserver' in window) {
+            const videoObserver = new IntersectionObserver((entries, observer) => {
+                if (entries.some(entry => entry.isIntersecting)) {
+                    loadShowcaseVideo();
+                    observer.disconnect();
+                }
+            }, { rootMargin: '300px 0px' });
+            videoObserver.observe(showcaseVideo);
+        } else {
+            loadShowcaseVideo();
+        }
+    }
+
     // =========================================
     // 3D Mouse-Tracking Card Tilt
     // =========================================
@@ -480,13 +505,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const toast = document.createElement('div');
         toast.className = `toast-notification toast-${type}`;
+        toast.setAttribute('role', type === 'success' ? 'status' : 'alert');
+        toast.setAttribute('aria-live', type === 'success' ? 'polite' : 'assertive');
         toast.innerHTML = `
             <span class="toast-icon">
-                <i class="ph ph-${type === 'success' ? 'check-circle' : 'warning-circle'}"></i>
+                <i class="ph ph-${type === 'success' ? 'check-circle' : 'warning-circle'}" aria-hidden="true"></i>
             </span>
-            <span class="toast-message">${message}</span>
-            <button class="toast-close" aria-label="Close"><i class="ph ph-x"></i></button>
+            <span class="toast-message"></span>
+            <button class="toast-close" type="button" aria-label="Close notification"><i class="ph ph-x" aria-hidden="true"></i></button>
         `;
+        toast.querySelector('.toast-message').textContent = message;
 
         document.body.appendChild(toast);
 
