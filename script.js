@@ -272,6 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
             menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
             menuToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
             mobileMenu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+            mobileMenu.inert = !isOpen;
         });
         
         // Close menu on navigation link clicks
@@ -283,6 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 menuToggle.setAttribute('aria-expanded', 'false');
                 menuToggle.setAttribute('aria-label', 'Open menu');
                 mobileMenu.setAttribute('aria-hidden', 'true');
+                mobileMenu.inert = true;
             });
         });
         
@@ -294,6 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 menuToggle.setAttribute('aria-expanded', 'false');
                 menuToggle.setAttribute('aria-label', 'Open menu');
                 mobileMenu.setAttribute('aria-hidden', 'true');
+                mobileMenu.inert = true;
             }
         });
 
@@ -305,6 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 menuToggle.setAttribute('aria-expanded', 'false');
                 menuToggle.setAttribute('aria-label', 'Open menu');
                 mobileMenu.setAttribute('aria-hidden', 'true');
+                mobileMenu.inert = true;
                 menuToggle.focus();
             }
         });
@@ -314,26 +318,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const counters = document.querySelectorAll('.counter');
     
     const startCounting = (counter) => {
-        const updateCount = () => {
-            const target = +counter.getAttribute('data-target');
-            const count = +counter.innerText.replace('+', '').replace('M', ''); // Clean text in case
-            
-            const speed = 100; // Lower is faster
-            const inc = target / speed;
+        const target = Number(counter.dataset.target) || 0;
+        const increment = target / 100;
+        let count = 0;
 
+        const updateCount = () => {
             if (count < target) {
-                const nextVal = count + inc;
-                if (nextVal >= target) {
-                    counter.innerText = target;
-                } else {
-                    counter.innerText = Math.ceil(nextVal);
-                    setTimeout(updateCount, 15);
-                }
+                count = Math.min(target, count + increment);
+                counter.textContent = String(Math.ceil(count));
+                if (count < target) requestAnimationFrame(updateCount);
             } else {
-                counter.innerText = target;
+                counter.textContent = String(target);
             }
         };
-        updateCount();
+        requestAnimationFrame(updateCount);
     };
 
     const counterObserver = new IntersectionObserver((entries, observer) => {

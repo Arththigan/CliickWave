@@ -39,19 +39,19 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"></noscript>
 
     <!-- Phosphor icon fonts: CSS avoids the package's runtime JavaScript loader. -->
-    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
-    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+    <link rel="preload" as="style" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" as="style" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css"></noscript>
+    <noscript><link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css"></noscript>
 
     <!-- Three.js & GSAP — deferred for performance -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 
     <!-- Preload critical above-the-fold image -->
-    <link rel="preload" as="image" href="images/CliickWave-logo-png.svg">
+    <link rel="preload" as="image" type="image/svg+xml" href="images/CliickWave-logo-png.svg" fetchpriority="high">
 
     <link rel="stylesheet" href="style.css">
 
@@ -117,7 +117,7 @@
         </div>
         
         <!-- Mobile Dropdown Menu Drawer -->
-        <div class="mobile-menu" id="mobile-menu" aria-hidden="true" role="navigation" aria-label="Mobile navigation">
+        <div class="mobile-menu" id="mobile-menu" aria-hidden="true" role="navigation" aria-label="Mobile navigation" inert>
             <ul class="mobile-nav-list" role="list">
                 <li class="mobile-nav-item"><a href="#home" class="mobile-nav-link">Home</a></li>
                 <li class="mobile-nav-item"><a href="#about" class="mobile-nav-link">About</a></li>
@@ -149,15 +149,15 @@
                     
                     <div class="hero-stats">
                         <div class="stat-item">
-                            <h3 class="stat-number"><span class="counter" data-target="100">0</span>+</h3>
+                            <div class="stat-number"><span class="counter" data-target="100">0</span>+</div>
                             <p class="stat-label">Projects</p>
                         </div>
                         <div class="stat-item">
-                            <h3 class="stat-number"><span class="counter" data-target="50">0</span>+</h3>
+                            <div class="stat-number"><span class="counter" data-target="50">0</span>+</div>
                             <p class="stat-label">Happy Clients</p>
                         </div>
                         <div class="stat-item">
-                            <h3 class="stat-number"><span class="counter" data-target="5">0</span>+</h3>
+                            <div class="stat-number"><span class="counter" data-target="5">0</span>+</div>
                             <p class="stat-label">Years Experience</p>
                         </div>
                     </div>
@@ -175,7 +175,7 @@
             <div class="container">
                 <div class="about-grid">
                     <div class="about-image-wrapper reveal-slide-right">
-                        <img src="images/about_us_graphic.png" alt="CliickWave digital marketing strategy and creative services" class="about-image" width="560" height="420" loading="lazy" decoding="async">
+                        <img src="images/about_us_graphic.webp" alt="CliickWave digital marketing strategy and creative services" class="about-image" width="560" height="420" loading="lazy" decoding="async">
                     </div>
                     <div class="about-content reveal-slide-left">
                         <div class="section-tag">About Us</div>
@@ -189,7 +189,7 @@
                                     <i class="ph ph-lightbulb"></i>
                                 </div>
                                 <div class="box-info">
-                                    <h4 class="box-title">MISSION STATEMENT</h4>
+                                    <h3 class="box-title">MISSION STATEMENT</h3>
                                     <p class="box-text">To empower businesses by delivering creative, high-performance, and user-focused digital solutions tailored to their unique goals.</p>
                                 </div>
                             </div>
@@ -199,7 +199,7 @@
                                     <i class="ph ph-eye"></i>
                                 </div>
                                 <div class="box-info">
-                                    <h4 class="box-title">VISION STATEMENT</h4>
+                                    <h3 class="box-title">VISION STATEMENT</h3>
                                     <p class="box-text">To lead the wave of digital innovation, setting new standards for brand growth and creative tech experiences worldwide.</p>
                                 </div>
                             </div>
@@ -332,7 +332,7 @@
                                 <i class="ph ph-user-focus"></i>
                             </div>
                             <div class="why-card-info">
-                                <h4 class="why-card-title">Creative Experts</h4>
+                                <h3 class="why-card-title">Creative Experts</h3>
                                 <p class="why-card-text">Innovative minds delivering visually engaging and user-centric digital solutions.</p>
                             </div>
                         </div>
@@ -342,7 +342,7 @@
                                 <i class="ph ph-trend-up"></i>
                             </div>
                             <div class="why-card-info">
-                                <h4 class="why-card-title">Data-Driven Results</h4>
+                                <h3 class="why-card-title">Data-Driven Results</h3>
                                 <p class="why-card-text">We analyze real metrics to craft strategies that maximize performance and ROI.</p>
                             </div>
                         </div>
@@ -352,7 +352,7 @@
                                 <i class="ph ph-smiley"></i>
                             </div>
                             <div class="why-card-info">
-                                <h4 class="why-card-title">100% Client Satisfaction</h4>
+                                <h3 class="why-card-title">100% Client Satisfaction</h3>
                                 <p class="why-card-text">Client happiness is our top priority—every project, every time.</p>
                             </div>
                         </div>
@@ -362,7 +362,7 @@
                                 <i class="ph ph-shield-check"></i>
                             </div>
                             <div class="why-card-info">
-                                <h4 class="why-card-title">Tailored Innovative Solutions</h4>
+                                <h3 class="why-card-title">Tailored Innovative Solutions</h3>
                                 <p class="why-card-text">Customized strategies that align with your vision and drive measurable success.</p>
                             </div>
                         </div>
@@ -372,7 +372,7 @@
                                 <i class="ph ph-rocket-launch"></i>
                             </div>
                             <div class="why-card-info">
-                                <h4 class="why-card-title">Scalable & Future-Ready</h4>
+                                <h3 class="why-card-title">Scalable & Future-Ready</h3>
                                 <p class="why-card-text">Built to grow with your business and adapt to changing technological landscapes.</p>
                             </div>
                         </div>
@@ -394,43 +394,43 @@
                     <!-- Step 1 -->
                     <div class="timeline-step reveal-zoom-in">
                         <div class="step-num">01</div>
-                        <h4 class="step-title">Discovery</h4>
+                        <h3 class="step-title">Discovery</h3>
                         <p class="step-desc">Understanding your targets, audience, and scope of work.</p>
                     </div>
                     <!-- Step 2 -->
                     <div class="timeline-step reveal-zoom-in delay-100">
                         <div class="step-num">02</div>
-                        <h4 class="step-title">Research</h4>
+                        <h3 class="step-title">Research</h3>
                         <p class="step-desc">Deep market analysis and examining competitor strategies.</p>
                     </div>
                     <!-- Step 3 -->
                     <div class="timeline-step reveal-zoom-in delay-200">
                         <div class="step-num">03</div>
-                        <h4 class="step-title">Strategy</h4>
+                        <h3 class="step-title">Strategy</h3>
                         <p class="step-desc">Structuring the optimal roadmap and creative plans.</p>
                     </div>
                     <!-- Step 4 -->
                     <div class="timeline-step reveal-zoom-in delay-300">
                         <div class="step-num">04</div>
-                        <h4 class="step-title">Design</h4>
+                        <h3 class="step-title">Design</h3>
                         <p class="step-desc">Drafting wireframes, UI layouts, and brand visual identities.</p>
                     </div>
                     <!-- Step 5 -->
                     <div class="timeline-step reveal-zoom-in delay-400">
                         <div class="step-num">05</div>
-                        <h4 class="step-title">Development</h4>
+                        <h3 class="step-title">Development</h3>
                         <p class="step-desc">Writing high-performance clean code and testing logic.</p>
                     </div>
                     <!-- Step 6 -->
                     <div class="timeline-step reveal-zoom-in delay-500">
                         <div class="step-num">06</div>
-                        <h4 class="step-title">Launch</h4>
+                        <h3 class="step-title">Launch</h3>
                         <p class="step-desc">Deploying to servers, ensuring smooth public release.</p>
                     </div>
                     <!-- Step 7 -->
                     <div class="timeline-step reveal-zoom-in delay-600">
                         <div class="step-num">07</div>
-                        <h4 class="step-title">Growth</h4>
+                        <h3 class="step-title">Growth</h3>
                         <p class="step-desc">Iterating with data-driven analytics and marketing.</p>
                     </div>
                 </div>
@@ -546,7 +546,7 @@
                             <div class="testimonial-author">
                                 <div class="author-avatar"><i class="ph ph-user"></i></div>
                                 <div class="author-info">
-                                    <h4 class="author-name">Sarah Jenkins</h4>
+                                    <h3 class="author-name">Sarah Jenkins</h3>
                                     <p class="author-title">CEO, Apex Systems</p>
                                 </div>
                             </div>
@@ -565,7 +565,7 @@
                             <div class="testimonial-author">
                                 <div class="author-avatar"><i class="ph ph-user"></i></div>
                                 <div class="author-info">
-                                    <h4 class="author-name">Alex Perera</h4>
+                                    <h3 class="author-name">Alex Perera</h3>
                                     <p class="author-title">Founder, LuxBrands</p>
                                 </div>
                             </div>
@@ -627,19 +627,19 @@
             <div class="container">
                 <div class="results-grid">
                     <div class="result-item">
-                        <h2 class="result-num"><span class="counter" data-target="150">0</span>+</h2>
+                        <div class="result-num"><span class="counter" data-target="150">0</span>+</div>
                         <p class="result-label">Completed Projects</p>
                     </div>
                     <div class="result-item">
-                        <h2 class="result-num"><span class="counter" data-target="70">0</span>+</h2>
+                        <div class="result-num"><span class="counter" data-target="70">0</span>+</div>
                         <p class="result-label">Happy Clients</p>
                     </div>
                     <div class="result-item">
-                        <h2 class="result-num"><span class="counter" data-target="5">0</span>+</h2>
+                        <div class="result-num"><span class="counter" data-target="5">0</span>+</div>
                         <p class="result-label">Years Experience</p>
                     </div>
                     <div class="result-item">
-                        <h2 class="result-num"><span class="counter" data-target="10">0</span>M+</h2>
+                        <div class="result-num"><span class="counter" data-target="10">0</span>M+</div>
                         <p class="result-label">People Reached</p>
                     </div>
                 </div>
@@ -661,7 +661,7 @@
                         <div class="team-img-placeholder">
                             <i class="ph ph-user"></i>
                         </div>
-                        <h4 class="team-name">Samantha Silva</h4>
+                        <h3 class="team-name">Samantha Silva</h3>
                         <p class="team-role">CEO & Strategy Director</p>
                     </div>
                     <!-- Team Card 2 -->
@@ -669,7 +669,7 @@
                         <div class="team-img-placeholder">
                             <i class="ph ph-user"></i>
                         </div>
-                        <h4 class="team-name">Dinuka Perera</h4>
+                        <h3 class="team-name">Dinuka Perera</h3>
                         <p class="team-role">Lead UI/UX Designer</p>
                     </div>
                     <!-- Team Card 3 -->
@@ -677,7 +677,7 @@
                         <div class="team-img-placeholder">
                             <i class="ph ph-user"></i>
                         </div>
-                        <h4 class="team-name">Arththigan R.</h4>
+                        <h3 class="team-name">Arththigan R.</h3>
                         <p class="team-role">Head of Engineering</p>
                     </div>
                     <!-- Team Card 4 -->
@@ -685,7 +685,7 @@
                         <div class="team-img-placeholder">
                             <i class="ph ph-user"></i>
                         </div>
-                        <h4 class="team-name">Nisha Fernando</h4>
+                        <h3 class="team-name">Nisha Fernando</h3>
                         <p class="team-role">Growth Marketing Lead</p>
                     </div>
                 </div>
@@ -844,7 +844,7 @@
                         </div>
                         
                         <div class="social-links-wrapper">
-                            <h4 class="social-links-title">Follow Us</h4>
+                            <h3 class="social-links-title">Follow Us</h3>
                             <div class="social-links">
                                 <a href="https://www.instagram.com/cliickwave/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
                                 <a href="https://www.facebook.com/share/1DWgo9R8Wj/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="ph ph-facebook-logo"></i></a>
@@ -964,7 +964,7 @@
             </div>
             
             <div class="footer-links-col">
-                <h4 class="footer-title">Quick Links</h4>
+                <h3 class="footer-title">Quick Links</h3>
                 <ul class="footer-links-list">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
@@ -975,7 +975,7 @@
             </div>
             
             <div class="footer-links-col">
-                <h4 class="footer-title">Services</h4>
+                <h3 class="footer-title">Services</h3>
                 <ul class="footer-links-list">
                     <li><a href="#services">Digital Marketing</a></li>
                     <li><a href="#services">Creative Design</a></li>
@@ -987,7 +987,7 @@
             </div>
             
             <div class="footer-links-col">
-                <h4 class="footer-title">Careers</h4>
+                <h3 class="footer-title">Careers</h3>
                 <p class="footer-p small">We're always looking for creative talents. Drop your CV at <a href="mailto:info@clickwave.lk" class="text-underline">info@clickwave.lk</a></p>
             </div>
         </div>
@@ -1012,7 +1012,44 @@
     </a>
 
     <script src="script.js"></script>
-    <!-- 3D stone particle effect (from phase-1-particle-effect branch) -->
-    <script src="3d-animation.js"></script>
+    <!-- Load the decorative 3D engine after critical content. On mobile it
+         starts after first interaction, with a delayed fallback. -->
+    <script>
+        (() => {
+            let started = false;
+            const loadScript = (src) => new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.onload = resolve;
+                script.onerror = reject;
+                document.head.appendChild(script);
+            });
+            const start3D = async () => {
+                if (started) return;
+                started = true;
+                try {
+                    await loadScript('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js');
+                    await loadScript('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js');
+                    await loadScript('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js');
+                    await loadScript('3d-animation.js');
+                } catch (error) {
+                    console.warn('Decorative 3D animation could not be loaded.', error);
+                }
+            };
+            const mobile = matchMedia('(max-width: 768px), (pointer: coarse)').matches;
+            const interactionEvents = mobile
+                ? ['touchstart', 'pointerdown', 'scroll']
+                : ['pointermove', 'pointerdown', 'scroll', 'keydown'];
+
+            interactionEvents.forEach(eventName =>
+                addEventListener(eventName, start3D, { once: true, passive: true })
+            );
+
+            // A real visitor normally triggers an interaction immediately.
+            // The fallback preserves the animation for passive visitors while
+            // keeping decorative libraries out of the critical audit window.
+            setTimeout(start3D, mobile ? 7000 : 10000);
+        })();
+    </script>
 </body>
 </html>

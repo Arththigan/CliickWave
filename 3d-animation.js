@@ -40,6 +40,18 @@ const initCliickWave3D = () => {
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+    // Scale the stone to the available viewport width. Perspective sizing is
+    // based largely on viewport height, so a fixed desktop scale looks much
+    // larger on narrow portrait screens.
+    const getStoneScale = () => {
+        const viewportWidth = window.innerWidth;
+        if (viewportWidth <= 360) return 0.40;
+        if (viewportWidth <= 480) return 0.48;
+        if (viewportWidth <= 768) return 0.62;
+        if (viewportWidth <= 1024) return 0.76;
+        return 0.90;
+    };
+
     const scene = new THREE.Scene();
     
     // Add atmospheric background fog
@@ -67,6 +79,7 @@ const initCliickWave3D = () => {
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxPixelRatio));
+            meshGroup.scale.setScalar(getStoneScale());
             resizeFrame = null;
         });
     }, { passive: true });
@@ -92,7 +105,7 @@ const initCliickWave3D = () => {
     // -------------------------------------------------------------
     // 4. Background Particle System (Starfield / Floating Sparks)
     // -------------------------------------------------------------
-    const particlesCount = isMobile ? 320 : 750;
+    const particlesCount = isMobile ? 180 : 750;
     const particlesGeometry = new THREE.BufferGeometry();
     const positions = new Float32Array(particlesCount * 3);
     const colors = new Float32Array(particlesCount * 3);
@@ -147,8 +160,7 @@ const initCliickWave3D = () => {
 
     // Keep the stone at one deterministic size. Scroll restoration after a
     // refresh must not leave it on one of the former oversized scale phases.
-    const STONE_SCALE = 0.9;
-    meshGroup.scale.setScalar(STONE_SCALE);
+    meshGroup.scale.setScalar(getStoneScale());
 
     // Central Faceted Mesh
     const mainGeometry = new THREE.IcosahedronGeometry(1.8, isMobile ? 2 : 3);
@@ -181,7 +193,7 @@ const initCliickWave3D = () => {
     meshGroup.add(wireframeMesh);
 
     // Outer Aura Ring (Faint glowing ring)
-    const torusGeometry = new THREE.TorusGeometry(2.3, 0.03, 8, 80);
+    const torusGeometry = new THREE.TorusGeometry(2.3, 0.03, 8, isMobile ? 48 : 80);
     const torusMaterial = new THREE.MeshBasicMaterial({
         color: 0xff00ff,
         transparent: true,
@@ -306,7 +318,7 @@ const initCliickWave3D = () => {
     const clock = new THREE.Clock();
 
     let frameCount = 0;
-    const geometryUpdateInterval = isMobile ? 3 : 2;
+    const geometryUpdateInterval = isMobile ? 6 : 2;
 
     const animate = () => {
         requestAnimationFrame(animate);
