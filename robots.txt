@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cliickwave-9b17a.web.app/sitemap.xml

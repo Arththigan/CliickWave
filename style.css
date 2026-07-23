@@ -819,6 +819,10 @@ p {
 .step-num {
     width: 50px;
     height: 50px;
+    min-width: 50px;
+    min-height: 50px;
+    aspect-ratio: 1 / 1;
+    flex: 0 0 50px;
     border-radius: 50%;
     background-color: var(--clr-white);
     border: 2px solid var(--clr-primary);
@@ -2393,6 +2397,12 @@ p {
 
 /* Reduce motion preference */
 @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
     .stat-item,
     .hero-title,
     .hero-description,
@@ -2712,6 +2722,32 @@ html {
 
 /* ── Fix: Blog grid on mobile ── */
 @media (max-width: 480px) {
+    .process-timeline::before {
+        left: 25px;
+        right: auto;
+    }
+
+    .timeline-step {
+        display: grid;
+        grid-template-columns: 50px minmax(78px, auto) minmax(0, 1fr);
+        column-gap: 14px;
+        align-items: center;
+    }
+
+    .step-num {
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
+        min-height: 50px;
+        flex-basis: 50px;
+        margin: 0;
+    }
+
+    .step-title,
+    .step-desc {
+        min-width: 0;
+    }
+
     .blog-grid { grid-template-columns: 1fr; }
 }
 
@@ -3003,4 +3039,144 @@ img {
 }
 .logo-marquee::after {
     background: linear-gradient(to left, var(--clr-bg-main) 0%, rgba(255,255,255,0) 100%);
+}
+
+/* Responsive hardening: fluid reflow, touch, landscape and safe areas */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { width: 100%; }
+#webgl-canvas { inset: 0; width: 100%; height: 100%; }
+
+main, section, article, aside, .container, .header-container,
+.about-grid > *, .why-grid > *, .contact-grid > *, .form-grid > *,
+.footer-grid > *, .services-grid > *, .team-grid > *, .blog-grid > * {
+    min-width: 0;
+}
+
+.container { padding-inline: clamp(14px, 3vw, 24px); }
+.section { padding-block: clamp(72px, 8vw, 120px); }
+img, video, canvas, iframe { max-width: 100%; }
+video { height: auto; }
+
+.btn, .card-btn, .btn-primary-cta, .btn-outline-cta {
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+}
+
+.detail-link, .footer a, .legal-content a, .service-card-title,
+.blog-card-title, .team-name { overflow-wrap: anywhere; }
+.social-links, .hero-cta, .cta-actions { flex-wrap: wrap; }
+.portfolio-item { max-width: calc(100vw - 28px); }
+
+.mobile-menu.open {
+    max-height: min(500px, calc(100dvh - 70px));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.whatsapp-cta {
+    right: max(20px, env(safe-area-inset-right));
+    bottom: max(90px, calc(env(safe-area-inset-bottom) + 70px));
+}
+.back-to-top.visible {
+    right: max(20px, env(safe-area-inset-right));
+    bottom: max(20px, env(safe-area-inset-bottom));
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .header, .team-card, .contact-form-wrapper { background-color: rgba(255,255,255,.96); }
+}
+
+@media (max-width: 768px) {
+    .reveal-slide-left,
+    .reveal-slide-right { transform: translateY(32px); }
+
+    .hero { min-height: 100svh; padding-top: clamp(110px, 18vw, 150px); }
+    .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: clamp(8px, 4vw, 24px);
+        width: 100%;
+    }
+    .stat-number { font-size: clamp(1.75rem, 8vw, 2.5rem); }
+    .stat-label { font-size: clamp(.72rem, 2.8vw, .9rem); line-height: 1.35; }
+    .team-grid { grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); }
+    .blog-grid { grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); }
+    .form-group input, .form-group select, .form-group textarea {
+        min-width: 0;
+        font-size: 16px;
+    }
+    .contact-detail-item { align-items: flex-start; }
+    .detail-icon { flex: 0 0 50px; }
+}
+
+@media (max-width: 340px) {
+    .container { padding-inline: 12px; }
+    .header-container { height: 72px; }
+    .logo { width: 112px; height: 50px; }
+    .menu-toggle { width: 44px; height: 44px; }
+    .hero-title { font-size: clamp(1.75rem, 10vw, 2rem); }
+    .hero-description { font-size: .95rem; }
+    .results-grid { grid-template-columns: 1fr; }
+    .contact-form-wrapper, .service-card, .team-card { padding-inline: 16px; }
+}
+
+/* Ultra-small phones need explicit shrink boundaries. Without these, an
+   animated hero child can keep its intrinsic width and be clipped. */
+@media (max-width: 480px) {
+    .header-container,
+    .hero-container,
+    .hero-content {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .logo {
+        flex-shrink: 0;
+    }
+
+    .header-actions {
+        min-width: 44px;
+        margin-left: auto;
+        flex: 0 0 auto;
+    }
+
+    .menu-toggle {
+        display: flex !important;
+        visibility: visible;
+        flex: 0 0 44px;
+    }
+
+    .hero-title,
+    .hero-description {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+
+    .hero-title {
+        font-size: clamp(1.65rem, 9vw, 2rem);
+    }
+}
+
+@media (max-height: 600px) and (orientation: landscape) {
+    .reveal-slide-left,
+    .reveal-slide-right { transform: translateY(32px); }
+
+    .hero { min-height: auto; padding-top: 100px; padding-bottom: 48px; }
+    .hero-description { margin-bottom: 24px; }
+    .hero-cta { margin-bottom: 32px; }
+    .hero-stats { padding-top: 24px; }
+    .mobile-menu.open { max-height: calc(100dvh - 70px); }
+}
+
+@media (hover: none), (pointer: coarse) {
+    .service-card:hover, .team-card:hover, .blog-card:hover,
+    .portfolio-item:hover, .social-links a:hover { transform: none; }
+    .portfolio-overlay {
+        opacity: 1;
+        background: linear-gradient(to top, rgba(47,5,82,.82), transparent 65%);
+    }
 }

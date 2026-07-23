@@ -5,11 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms & Conditions | CliickWave</title>
     <meta name="description" content="CliickWave Terms and Conditions — please read before using our services.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#480A79">
+    <link rel="canonical" href="https://cliickwave-9b17a.web.app/terms-conditions.html">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cliickwave-9b17a.web.app/terms-conditions.html">
+    <meta property="og:site_name" content="CliickWave">
+    <meta property="og:title" content="Terms & Conditions | CliickWave">
+    <meta property="og:description" content="Read the terms that govern use of CliickWave's website and services.">
+    <meta property="og:image" content="https://cliickwave-9b17a.web.app/images/CliickWave-logo-png.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Terms & Conditions | CliickWave">
+    <meta name="twitter:description" content="Read the terms that govern use of CliickWave's website and services.">
+    <meta name="twitter:image" content="https://cliickwave-9b17a.web.app/images/CliickWave-logo-png.png">
     <link rel="icon" type="image/svg+xml" href="images/CliickWave-logo-png.svg">
+    <link rel="apple-touch-icon" href="images/CliickWave-logo-png.png">
+    <link rel="manifest" href="site.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -297,6 +312,23 @@
             .legal-layout { grid-template-columns: 1fr; padding-top: 80px; gap: 32px; }
             .legal-sidebar { display: none; }
             .topnav { padding: 0 16px; }
+        }
+
+        .legal-layout, .legal-content, .legal-section { min-width: 0; }
+        .legal-content a, .legal-section p { overflow-wrap: anywhere; }
+
+        @media (max-width: 480px) {
+            .legal-layout { padding: 80px 14px 48px; }
+            .legal-title { font-size: clamp(1.65rem, 9vw, 1.8rem); }
+            .legal-section h2 { font-size: 1.1rem; }
+            .legal-section p { font-size: .93rem; }
+            .topnav-back { min-height: 44px; padding-inline: 12px; }
+        }
+
+        @media (max-width: 320px) {
+            .topnav { padding-inline: 10px; }
+            .topnav-logo img { height: 32px; }
+            .topnav-back { font-size: .78rem; }
         }
     </style>
 </head>
